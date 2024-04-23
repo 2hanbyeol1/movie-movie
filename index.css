@@ -1,0 +1,91 @@
+/* global */
+@font-face {
+  font-family: 'Pretendard-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff')
+    format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+* {
+  font-family: 'Pretendard-Regular';
+}
+
+body {
+  margin: 0;
+  background-color: black;
+}
+
+header {
+  width: 40%;
+  height: 3.3rem;
+  margin: 0 auto;
+  padding: 1.8rem 0;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+input {
+  outline: none;
+}
+
+.icon {
+  height: 100%;
+}
+
+.search-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.search-icon {
+  width: 1.5rem;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0.7rem;
+}
+
+#search-input {
+  width: 100%;
+  height: 100%;
+  padding-left: 2.5rem;
+  box-sizing: border-box;
+  border-radius: 0.5rem;
+  font-size: 1.3rem;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+}
+
+#movie-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  width: 90%;
+}
+
+.card-container {
+  width: 23%;
+  cursor: pointer;
+}
+
+.card-img {
+  width: 100%;
+  height: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  object-fit: cover;
+}
+
+.card-title {
+  color: white;
+  font-size: 1.3rem;
+  text-align: center;
+  margin: 0.7rem 0;
+}

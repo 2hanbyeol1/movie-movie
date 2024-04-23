@@ -1,3 +1,24 @@
 # 🎬 무비무비
 
 영화 검색 페이지
+
+## 기술 스택
+
+<div>
+  <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white"> 
+  <img src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white"> 
+  <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
+</div>
+
+## 참고 색상 팔레트
+
+https://www.clipartkorea.co.kr/search/preview?cont_code=cb1790009061
+
+## 기능
+
+- [x] 인기 영화 데이터 조회
+- [x] 영화 검색 기능
+  - 제목 기반
+  - 검색어 입력 완료 시 1초 후에 검색 시작
+  - 띄어쓰기 무시 _(ex. 쇼생크탈출 => 쇼생크 탈출도 검색 가능)_
+- [ ] .
