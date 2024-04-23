@@ -1,5 +1,5 @@
 // api.js
-function getTopRatedMovies({ movies, language, page }) {
+function getTopRatedMovies({ language, page }) {
   const options = {
     method: 'GET',
     headers: {
@@ -17,7 +17,6 @@ function getTopRatedMovies({ movies, language, page }) {
       console.log(response);
       response.results.forEach((res) => {
         appendCard(res);
-        movies.push(res);
       });
     })
     .catch((err) => console.error(err));
@@ -41,27 +40,27 @@ function appendCard({ id, title, poster_path }) {
   $section.appendChild($container);
 }
 
-function findMovies(movies, query) {
+function searchMovies(query) {
   console.log(`'${query}'로 검색을 시작합니다`);
   query = query.replaceAll(' ', '');
-  return movies.filter((m) => m.title.replaceAll(' ', '').includes(query));
+  document.querySelectorAll('.card-container').forEach(($container) => {
+    const title = $container.childNodes[1].textContent.replaceAll(' ', '');
+    if (title.includes(query)) $container.style.display = 'block';
+    else $container.style.display = 'none';
+  });
 }
 
 window.onload = function () {
-  const movies = [];
-
   let language = 'ko-KR'; // en-US
   let page = 1;
   let tm = null;
 
-  getTopRatedMovies({ movies, language, page });
+  getTopRatedMovies({ language, page });
 
   document.querySelector('#search-input').addEventListener('input', (e) => {
     clearTimeout(tm);
     tm = setTimeout(() => {
-      const filteredMovies = findMovies(movies, e.target.value);
-      document.querySelector('#movie-section').replaceChildren();
-      filteredMovies.forEach((m) => appendCard(m));
+      const filteredMovies = searchMovies(e.target.value);
     }, 1000);
   });
 };
