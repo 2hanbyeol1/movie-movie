@@ -16,6 +16,14 @@ body {
   background-color: black;
 }
 
+body::-webkit-scrollbar {
+  width: 2px;
+}
+body::-webkit-scrollbar-thumb {
+  background-color: #4b4b4b;
+  border-radius: 10px;
+}
+
 header {
   width: 100%;
   padding: 1rem;
