@@ -80,7 +80,9 @@ window.onload = function () {
   getTopRatedMovies({ language, page });
 
   let tm = null;
-  document.querySelector('#search-input').addEventListener('input', (e) => {
+  $input = document.querySelector('#search-input');
+  $input.focus();
+  $input.addEventListener('input', (e) => {
     clearTimeout(tm);
     tm = setTimeout(() => {
       searchMovies(e.target.value);
