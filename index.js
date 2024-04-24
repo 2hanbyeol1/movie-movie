@@ -70,14 +70,23 @@ function searchMovies(query) {
 window.onload = function () {
   let language = 'ko-KR'; // en-US
   let page = 1;
-  let tm = null;
 
   getTopRatedMovies({ language, page });
 
+  let tm = null;
   document.querySelector('#search-input').addEventListener('input', (e) => {
     clearTimeout(tm);
     tm = setTimeout(() => {
-      const filteredMovies = searchMovies(e.target.value);
+      searchMovies(e.target.value);
     }, 1000);
+  });
+
+  const $header = document.querySelector('header');
+  let prevScrollTop = 0;
+  document.addEventListener('scroll', function () {
+    var nextScrollTop = window.scrollY || 0;
+    if (nextScrollTop > prevScrollTop) $header.classList.add('scrollDown');
+    else $header.classList.remove('scrollDown');
+    prevScrollTop = nextScrollTop;
   });
 };
