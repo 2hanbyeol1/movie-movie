@@ -20,6 +20,7 @@ header {
   width: 100%;
   padding: 1rem;
   display: flex;
+  gap: 1rem;
   justify-content: space-between;
   align-items: center;
   position: fixed;
@@ -52,6 +53,7 @@ input {
   padding: 0.5rem 1rem;
   border: 1px solid #999999;
   border-radius: 0.5rem;
+  line-height: 1;
 }
 
 #header-lang-btn:hover {
@@ -121,6 +123,7 @@ main {
 }
 
 #movie-section {
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1.2rem;
@@ -188,6 +191,40 @@ main {
 
 #not-found {
   display: none;
-  grid-column: 1 / span 4;
   color: #ffffff;
+}
+
+@media screen and (max-width: 1150px) {
+  #movie-section {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 900px) {
+  #movie-section {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 780px) {
+  #search-input {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 610px) {
+  #movie-section {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+@media screen and (max-width: 500px) {
+  header {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  header.scrollDown {
+    transform: translate(0, -7.9rem);
+  }
 }
