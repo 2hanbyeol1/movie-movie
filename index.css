@@ -18,9 +18,7 @@ body {
 
 header {
   width: 100%;
-  height: 3rem;
-  margin: 0 1rem;
-  padding: 1rem 0;
+  padding: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -28,6 +26,7 @@ header {
   background-color: black;
   z-index: 1;
   transition: 1s;
+  box-sizing: border-box;
 }
 
 header.scrollDown {
@@ -35,8 +34,10 @@ header.scrollDown {
 }
 
 button {
+  padding: 0;
   border: 0;
   cursor: pointer;
+  background: none;
 }
 
 input {
@@ -58,7 +59,7 @@ input {
 }
 
 .header-search {
-  height: 100%;
+  height: 3rem;
   display: flex;
   gap: 1rem;
   justify-content: center;
@@ -131,6 +132,7 @@ main {
 
 .card-contents {
   position: relative;
+  height: 100%;
 }
 
 .card-img {
@@ -176,7 +178,7 @@ main {
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 16;
   line-height: 1.2;
-  height: 19.2rem;
+  height: 19.2rem; /* 16rem * 1.2 */
 }
 
 .card-container:hover .card-info {
