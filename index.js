@@ -33,6 +33,7 @@ function appendCard({ id, title, overview, vote_average, poster_path }) {
   const $img = document.createElement('img');
   $img.classList.add('card-img');
   $img.setAttribute('src', `https://image.tmdb.org/t/p/w300${poster_path}`);
+  $img.setAttribute('loading', 'lazy');
   const $info = document.createElement('div');
   $info.classList.add('card-info');
   const $title = document.createElement('div');
@@ -94,5 +95,29 @@ window.onload = function () {
     if (nextScrollTop > prevScrollTop) $header.classList.add('scrollDown');
     else $header.classList.remove('scrollDown');
     prevScrollTop = nextScrollTop;
+  });
+
+  const $langBtn = document.querySelector('#header-lang-btn');
+
+  $langBtn.addEventListener('click', (e) => {
+    const $section = document.querySelector('#movie-section');
+    $section.replaceChildren();
+
+    language = e.target.value;
+    getTopRatedMovies({ language, page });
+
+    const $searchBtn = document.querySelector('#search-btn');
+    switch (language) {
+      case 'ko-KR':
+        $langBtn.textContent = 'ENGLISH';
+        $langBtn.value = 'en-US';
+        $searchBtn.textContent = '찾기';
+        break;
+      case 'en-US':
+        $langBtn.textContent = '한국어';
+        $langBtn.value = 'ko-KR';
+        $searchBtn.textContent = 'SEARCH';
+        break;
+    }
   });
 };

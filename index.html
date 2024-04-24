@@ -10,20 +10,23 @@
   </head>
   <body>
     <header>
-      <img class="icon" src="img/icon.png" />
-      <div class="search-container">
-        <form id="search-form">
-          <img class="search-icon" src="img/search.png" />
-          <input id="search-input" name="query" />
-          <button type="submit" class="search-btn">찾기</button>
-        </form>
+      <button id="header-lang-btn" value="en-US">ENGLISH</button>
+      <div class="header-search">
+        <img class="icon" src="img/icon.png" />
+        <div class="search-container">
+          <form id="search-form">
+            <img class="search-icon" src="img/search.png" />
+            <input id="search-input" name="query" />
+            <button type="submit" id="search-btn">찾기</button>
+          </form>
+        </div>
       </div>
+      <div class="header-sort">정렬</div>
     </header>
     <main>
-      <section id="movie-section">
-        <article id="not-found">
-          입력하신 검색어와 일치하는 결과가 없습니다 🥹
-        </article>
+      <section id="movie-section"></section>
+      <section id="not-found">
+        입력하신 검색어와 일치하는 결과가 없습니다 🥹
       </section>
     </main>
   </body>

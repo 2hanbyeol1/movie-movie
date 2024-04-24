@@ -10,10 +10,6 @@
   <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
 </div>
 
-## 참고 색상 팔레트
-
-https://www.clipartkorea.co.kr/search/preview?cont_code=cb1790009061
-
 ## 기능
 
 - [x] 인기 영화 데이터 조회
@@ -23,8 +19,9 @@ https://www.clipartkorea.co.kr/search/preview?cont_code=cb1790009061
   - 웹사이트 로드 시 입력창에 자동 포커스
   - 제목 기반 검색
   - 검색 버튼 클릭 or 엔터 시 검색
-  - 띄어쓰기 무시 _(ex. 쇼생크탈출 => 쇼생크 탈출도 검색 가능)_
+  - 띄어쓰기 관계없이 검색
   - 검색 결과 없을 시 안내
 - [x] 스크롤 감지 헤더
   - 스크롤을 내리면, 헤더가 올라가서 보이지 않게 됨
   - 스크롤을 올리면, 헤더가 다시 내려옴
+- [x] 다국어 지원 (영어, 한국어)
