@@ -56,15 +56,21 @@ function appendCard({ id, title, overview, vote_average, poster_path }) {
 
 function searchMovies(query) {
   console.log(`'${query}'로 검색을 시작합니다`);
+  let found = 0;
   query = query.replaceAll(' ', '');
   document.querySelectorAll('.card-container').forEach(($container) => {
     const $contents = $container.childNodes[0];
     const $info = $contents.childNodes[1];
     const $title = $info.childNodes[0];
     const title = $title.textContent.replaceAll(' ', '');
-    if (title.includes(query)) $container.style.display = 'block';
-    else $container.style.display = 'none';
+    if (title.includes(query)) {
+      $container.style.display = 'block';
+      found += 1;
+    } else $container.style.display = 'none';
   });
+
+  const $notFound = document.querySelector('#not-found');
+  $notFound.style.display = found ? 'none' : 'block';
 }
 
 window.onload = function () {

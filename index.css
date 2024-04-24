@@ -138,3 +138,9 @@ main {
   background-color: #000000b0;
   opacity: 1;
 }
+
+#not-found {
+  display: none;
+  grid-column: 1 / span 4;
+  color: #ffffff;
+}
