@@ -8,6 +8,7 @@ import {
   $searchInput,
   $section,
   $notFound,
+  $scrollTopBtn,
 } from './js/element.js';
 import { appendCard, showCardsByQuery } from './js/card.js';
 
@@ -51,6 +52,14 @@ const changeLanguage = (language) => {
   prevQuery = '';
 };
 
+const scrollToTop = () => {
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: 'smooth',
+  });
+};
+
 // 로드 시 실행
 getTop20Movies({ language, page });
 
@@ -68,3 +77,7 @@ $searchForm.addEventListener('submit', (e) => {
 });
 
 $searchInput.focus();
+
+$scrollTopBtn.addEventListener('click', () => {
+  scrollToTop();
+});

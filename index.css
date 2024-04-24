@@ -117,6 +117,7 @@ input {
 
 main {
   padding-top: 5.9rem;
+  padding-bottom: 0.9rem;
   margin: 0 1rem;
   display: flex;
   justify-content: center;
@@ -192,6 +193,34 @@ main {
 #not-found {
   display: none;
   color: #ffffff;
+}
+
+#scroll-top-btn {
+  width: 3rem;
+  height: 3rem;
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  border-radius: 50%;
+  background-color: #af58c3;
+}
+
+#scroll-top-btn:hover {
+  animation: motion 0.7s linear 0s infinite;
+}
+
+@keyframes motion {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-0.7rem);
+  }
+}
+
+#scroll-top-btn img {
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 @media screen and (max-width: 1150px) {

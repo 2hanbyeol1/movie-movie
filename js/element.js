@@ -5,3 +5,4 @@ export const $searchInput = document.querySelector('#search-input');
 export const $searchBtn = document.querySelector('#search-btn');
 export const $section = document.querySelector('#movie-section');
 export const $notFound = document.querySelector('#not-found');
+export const $scrollTopBtn = document.querySelector('#scroll-top-btn');
