@@ -78,15 +78,13 @@ window.onload = function () {
   let page = 1;
 
   getTopRatedMovies({ language, page });
-
-  let tm = null;
-  $input = document.querySelector('#search-input');
+  const $input = document.querySelector('#search-input');
   $input.focus();
-  $input.addEventListener('input', (e) => {
-    clearTimeout(tm);
-    tm = setTimeout(() => {
-      searchMovies(e.target.value);
-    }, 1000);
+
+  const $searchForm = document.querySelector('#search-form');
+  $searchForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    searchMovies(e.target.query.value);
   });
 
   const $header = document.querySelector('header');
