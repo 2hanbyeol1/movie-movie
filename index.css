@@ -174,9 +174,9 @@ main {
   overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 15;
+  -webkit-line-clamp: 16;
   line-height: 1.2;
-  height: 18rem;
+  height: 19.2rem;
 }
 
 .card-container:hover .card-info {

@@ -58,12 +58,12 @@ function appendCard({ id, title, overview, vote_average, poster_path }) {
 function searchMovies(query) {
   console.log(`'${query}'로 검색을 시작합니다`);
   let found = 0;
-  query = query.replaceAll(' ', '');
+  query = query.replaceAll(' ', '').toLowerCase();
   document.querySelectorAll('.card-container').forEach(($container) => {
     const $contents = $container.childNodes[0];
     const $info = $contents.childNodes[1];
     const $title = $info.childNodes[0];
-    const title = $title.textContent.replaceAll(' ', '');
+    const title = $title.textContent.replaceAll(' ', '').toLowerCase();
     if (title.includes(query)) {
       $container.style.display = 'block';
       found += 1;
@@ -77,15 +77,20 @@ function searchMovies(query) {
 window.onload = function () {
   let language = 'ko-KR'; // en-US
   let page = 1;
+  let prevQuery = '';
 
   getTopRatedMovies({ language, page });
-  const $input = document.querySelector('#search-input');
-  $input.focus();
+  const $searchInput = document.querySelector('#search-input');
+  $searchInput.focus();
 
   const $searchForm = document.querySelector('#search-form');
   $searchForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    searchMovies(e.target.query.value);
+    const query = e.target.query.value.replaceAll(' ', '').toLowerCase();
+    if (prevQuery !== query) {
+      searchMovies(query);
+      prevQuery = query;
+    }
   });
 
   const $header = document.querySelector('header');
@@ -112,11 +117,17 @@ window.onload = function () {
         $langBtn.textContent = 'ENGLISH';
         $langBtn.value = 'en-US';
         $searchBtn.textContent = '찾기';
+        prevQuery = '';
+        $searchInput.value = '';
+        $searchInput.focus();
         break;
       case 'en-US':
         $langBtn.textContent = '한국어';
         $langBtn.value = 'ko-KR';
         $searchBtn.textContent = 'SEARCH';
+        prevQuery = '';
+        $searchInput.value = '';
+        $searchInput.focus();
         break;
     }
   });
