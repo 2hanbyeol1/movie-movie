@@ -23,20 +23,34 @@ function getTopRatedMovies({ language, page }) {
 }
 
 // card.js
-function appendCard({ id, title, poster_path }) {
+function appendCard({ id, title, overview, vote_average, poster_path }) {
   const $section = document.querySelector('#movie-section');
   const $container = document.createElement('article');
   $container.classList.add('card-container');
   $container.addEventListener('click', () => alert(`영화 id : ${id}`));
+  const $contents = document.createElement('div');
+  $contents.classList.add('card-contents');
   const $img = document.createElement('img');
   $img.classList.add('card-img');
   $img.setAttribute('src', `https://image.tmdb.org/t/p/w300${poster_path}`);
+  const $info = document.createElement('div');
+  $info.classList.add('card-info');
   const $title = document.createElement('div');
   $title.classList.add('card-title');
   $title.textContent = title;
+  const $overview = document.createElement('div');
+  $overview.classList.add('card-overview');
+  $overview.textContent = overview;
+  const $rate = document.createElement('div');
+  $rate.classList.add('card-rate');
+  $rate.textContent = vote_average;
 
-  $container.appendChild($img);
-  $container.appendChild($title);
+  $info.appendChild($title);
+  $info.appendChild($overview);
+  $info.appendChild($rate);
+  $contents.appendChild($img);
+  $contents.appendChild($info);
+  $container.appendChild($contents);
   $section.appendChild($container);
 }
 
@@ -44,7 +58,10 @@ function searchMovies(query) {
   console.log(`'${query}'로 검색을 시작합니다`);
   query = query.replaceAll(' ', '');
   document.querySelectorAll('.card-container').forEach(($container) => {
-    const title = $container.childNodes[1].textContent.replaceAll(' ', '');
+    const $contents = $container.childNodes[0];
+    const $info = $contents.childNodes[1];
+    const $title = $info.childNodes[0];
+    const title = $title.textContent.replaceAll(' ', '');
     if (title.includes(query)) $container.style.display = 'block';
     else $container.style.display = 'none';
   });

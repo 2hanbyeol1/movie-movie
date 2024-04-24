@@ -17,6 +17,8 @@ https://www.clipartkorea.co.kr/search/preview?cont_code=cb1790009061
 ## 기능
 
 - [x] 인기 영화 데이터 조회
+  - 영화 포스터 이미지
+  - hover 시 제목, 내용요약, 평점 정보 확인 가능
 - [x] 영화 검색 기능
   - 제목 기반
   - 검색어 입력 완료 시 1초 후에 검색 시작

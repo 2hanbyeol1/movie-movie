@@ -32,6 +32,7 @@ input {
 
 .icon {
   height: 100%;
+  border-radius: 50%;
 }
 
 .search-container {
@@ -70,25 +71,60 @@ main {
 }
 
 .card-container {
-  cursor: pointer;
   padding: 0.5rem;
+  cursor: pointer;
+}
+
+.card-contents {
+  position: relative;
 }
 
 .card-img {
   width: 100%;
-  height: 85%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   object-fit: cover;
 }
 
-.card-title {
+.card-info {
+  height: 100%;
+  padding: 0.7rem 0.5rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: absolute;
+  top: 0;
+  left: 0;
   color: white;
+  background-color: #00000000;
+  opacity: 0;
+  transition: 0.2s;
+}
+
+.card-title {
+  margin-bottom: 0.5rem;
   font-size: 1.3rem;
+  font-weight: bold;
   text-align: center;
-  margin: 0.7rem 0;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.card-overview {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 15;
+  line-height: 1.2;
+  height: 18rem;
+}
+
+.card-container:hover .card-info {
+  background-color: #000000b0;
+  opacity: 1;
 }
