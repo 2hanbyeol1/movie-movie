@@ -1,6 +1,7 @@
 import { $section } from './element.js';
+import { LANG } from './constant.js';
 
-export const appendCard = (movie) => {
+export const appendCard = (movie, language) => {
   const { id, title, overview, vote_average, poster_path } = movie;
 
   const $container = document.createElement('article');
@@ -24,7 +25,7 @@ export const appendCard = (movie) => {
 
   $title.textContent = title;
   $overview.textContent = overview;
-  $rate.textContent = `평점 ${vote_average}`;
+  $rate.innerHTML = `<span>${LANG[language].rate}</span> ${vote_average}`;
 
   $container.addEventListener('click', () => alert(`영화 id : ${id}`));
 

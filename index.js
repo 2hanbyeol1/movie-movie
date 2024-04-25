@@ -19,9 +19,9 @@ let prevQuery = '';
 let prevScrollTop = 0;
 
 // 기능
-const getTop20Movies = ({ language, page }) => {
+const get20Movies = ({ language, page }) => {
   getTopRatedMovies({ language, page }).then((movies) =>
-    movies.forEach((movie) => appendCard(movie))
+    movies.forEach((movie) => appendCard(movie, language))
   );
 };
 
@@ -52,7 +52,7 @@ const hideScrollTopButtonOnTop = () => {
 
 const changeLanguage = (language) => {
   $section.replaceChildren();
-  getTop20Movies({ language, page });
+  get20Movies({ language, page });
   $langBtn.value = LANG[language].nextLangValue;
   $langBtn.textContent = LANG[language].langBtn;
   $searchBtn.textContent = LANG[language].searchBtn;
@@ -70,7 +70,7 @@ const scrollToTop = () => {
 };
 
 // 로드 시 실행
-getTop20Movies({ language, page });
+get20Movies({ language, page });
 
 document.addEventListener('scroll', () => {
   hideHeaderOnScrollDown();
