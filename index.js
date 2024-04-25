@@ -35,10 +35,19 @@ const searchMovieByQuery = (query) => {
 };
 
 const hideHeaderOnScrollDown = () => {
-  var nextScrollTop = window.scrollY || 0;
+  const nextScrollTop = window.scrollY || 0;
   if (nextScrollTop > prevScrollTop) $header.classList.add('scrollDown');
   else $header.classList.remove('scrollDown');
   prevScrollTop = nextScrollTop;
+};
+
+const hideScrollTopButtonOnTop = () => {
+  const isTop = (window.scrollY || 0) === 0;
+  if (isTop) {
+    $scrollTopBtn.classList.add('hide');
+  } else {
+    $scrollTopBtn.classList.remove('hide');
+  }
 };
 
 const changeLanguage = (language) => {
@@ -65,6 +74,7 @@ getTop20Movies({ language, page });
 
 document.addEventListener('scroll', () => {
   hideHeaderOnScrollDown();
+  hideScrollTopButtonOnTop();
 });
 
 $langBtn.addEventListener('click', (e) => {

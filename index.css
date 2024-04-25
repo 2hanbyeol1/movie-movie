@@ -211,6 +211,13 @@ main {
   right: 1.5rem;
   border-radius: 50%;
   background-color: #af58c3;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.89);
+  opacity: 1;
+  transition: 0.5s;
+}
+
+#scroll-top-btn.hide {
+  opacity: 0;
 }
 
 #scroll-top-btn:hover {
@@ -222,7 +229,7 @@ main {
     transform: translateY(0);
   }
   100% {
-    transform: translateY(-0.7rem);
+    transform: translateY(-0.3rem);
   }
 }
 
