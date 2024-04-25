@@ -40,17 +40,19 @@ export const appendCard = (movie, language) => {
 };
 
 export const showCardsByQuery = (query) => {
-  let found = 0;
   query = query.replaceAll(' ', '').toLowerCase();
-  document.querySelectorAll('.card-container').forEach(($container) => {
-    const $contents = $container.childNodes[0];
-    const $info = $contents.childNodes[1];
-    const $title = $info.childNodes[0];
-    const title = $title.textContent.replaceAll(' ', '').toLowerCase();
-    if (title.includes(query)) {
-      $container.style.display = 'block';
-      found += 1;
-    } else $container.style.display = 'none';
-  });
-  return found;
+  return [...document.querySelectorAll('.card-container')].reduce(
+    (found, $container) => {
+      const $contents = $container.childNodes[0];
+      const $info = $contents.childNodes[1];
+      const $title = $info.childNodes[0];
+      const title = $title.textContent.replaceAll(' ', '').toLowerCase();
+      if (title.includes(query)) {
+        $container.style.display = 'block';
+        found += 1;
+      } else $container.style.display = 'none';
+      return found;
+    },
+    0
+  );
 };
