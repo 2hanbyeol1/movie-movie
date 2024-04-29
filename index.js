@@ -1,5 +1,4 @@
-import { LANG } from './js/constant.js';
-import { getTopRatedMovies } from './js/api.js';
+import { LANG } from './constant/language.js';
 import {
   $header,
   $langBtn,
@@ -9,8 +8,9 @@ import {
   $section,
   $notFound,
   $scrollTopBtn,
-} from './js/element.js';
+} from './constant/element.js';
 import { appendCard, showCardsByQuery } from './js/card.js';
+import { getTopRatedMovies } from './js/api.js';
 
 // 상태
 let language = 'ko-KR'; // en-US
@@ -29,14 +29,14 @@ const searchMovieByQuery = (query) => {
   query = query.replaceAll(' ', '').toLowerCase();
   if (prevQuery !== query) {
     const found = showCardsByQuery(query);
-    prevQuery = query;
     $notFound.style.display = found ? 'none' : 'block';
+    prevQuery = query;
   }
 };
 
 const changeLanguage = (language) => {
-  $section.replaceChildren();
   get20Movies({ language, page });
+  $section.replaceChildren();
   $langBtn.value = LANG[language].nextLangValue;
   $langBtn.textContent = LANG[language].langBtn;
   $searchBtn.textContent = LANG[language].searchBtn;

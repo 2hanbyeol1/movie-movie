@@ -1,5 +1,5 @@
-import { $section } from './element.js';
-import { LANG } from './constant.js';
+import { $section } from '../constant/element.js';
+import { LANG } from '../constant/language.js';
 
 export const appendCard = (movie, language) => {
   const { id, title, overview, vote_average, poster_path } = movie;
@@ -35,7 +35,6 @@ export const appendCard = (movie, language) => {
   $contents.appendChild($img);
   $contents.appendChild($info);
   $container.appendChild($contents);
-
   $section.appendChild($container);
 };
 

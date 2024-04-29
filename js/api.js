@@ -1,8 +1,8 @@
-import { API_OPTIONS } from './constant.js';
+import { API_OPTIONS, GET_TOP_RATED_MOVIES } from '../constant/api.js';
 
 export async function getTopRatedMovies({ language, page }) {
   const response = await fetch(
-    `https://api.themoviedb.org/3/movie/top_rated?language=${language}&page=${page}`,
+    GET_TOP_RATED_MOVIES({ language, page }),
     API_OPTIONS
   );
   const responseJson = await response.json();
