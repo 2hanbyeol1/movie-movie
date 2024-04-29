@@ -34,6 +34,18 @@ const searchMovieByQuery = (query) => {
   }
 };
 
+const changeLanguage = (language) => {
+  $section.replaceChildren();
+  get20Movies({ language, page });
+  $langBtn.value = LANG[language].nextLangValue;
+  $langBtn.textContent = LANG[language].langBtn;
+  $searchBtn.textContent = LANG[language].searchBtn;
+  $searchInput.value = '';
+  $searchInput.focus();
+  prevQuery = '';
+};
+
+// 이벤트
 const hideHeaderOnScrollDown = () => {
   const nextScrollTop = window.scrollY || 0;
   if (nextScrollTop > prevScrollTop) $header.classList.add('scrollDown');
@@ -48,17 +60,6 @@ const hideScrollTopButtonOnTop = () => {
   } else {
     $scrollTopBtn.classList.remove('hide');
   }
-};
-
-const changeLanguage = (language) => {
-  $section.replaceChildren();
-  get20Movies({ language, page });
-  $langBtn.value = LANG[language].nextLangValue;
-  $langBtn.textContent = LANG[language].langBtn;
-  $searchBtn.textContent = LANG[language].searchBtn;
-  $searchInput.value = '';
-  $searchInput.focus();
-  prevQuery = '';
 };
 
 const scrollToTop = () => {
