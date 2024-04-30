@@ -5,7 +5,7 @@ import {
   $searchBtn,
   $searchForm,
   $searchInput,
-  $section,
+  $list,
   $notFound,
   $scrollTopBtn,
 } from './constant/element.js';
@@ -37,7 +37,7 @@ const searchMovieByQuery = (query) => {
 
 const changeLanguage = (language) => {
   get20Movies({ language, page });
-  $section.replaceChildren();
+  $list.replaceChildren();
   $langBtn.value = LANG[language].nextLangValue;
   $langBtn.textContent = LANG[language].langBtn;
   $searchBtn.textContent = LANG[language].searchBtn;

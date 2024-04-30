@@ -1,11 +1,11 @@
-import { $section } from '../constant/element.js';
+import { $list } from '../constant/element.js';
 import { LANG } from '../constant/language.js';
 
 export const appendCard = (movie, language) => {
   const { id, title, overview, vote_average, poster_path } = movie;
 
-  const $container = document.createElement('article');
-  const $contents = document.createElement('div');
+  const $container = document.createElement('li');
+  const $contents = document.createElement('article');
   const $img = document.createElement('img');
   const $info = document.createElement('div');
   const $title = document.createElement('div');
@@ -35,7 +35,7 @@ export const appendCard = (movie, language) => {
   $contents.appendChild($img);
   $contents.appendChild($info);
   $container.appendChild($contents);
-  $section.appendChild($container);
+  $list.appendChild($container);
 };
 
 export const showCardsByQuery = (query) => {
