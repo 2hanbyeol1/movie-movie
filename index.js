@@ -21,7 +21,7 @@ let prevScrollTop = 0;
 // 기능
 const get20Movies = ({ language, page }) => {
   getTopRatedMovies({ language, page }).then((movies) =>
-    movies.forEach((movie) => appendCard(movie, language))
+    movies?.forEach((movie) => appendCard(movie, language))
   );
   $notFound.style.display = 'none';
 };
