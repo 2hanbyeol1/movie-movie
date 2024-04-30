@@ -20,6 +20,8 @@ export const appendCard = (movie, language) => {
   $overview.classList.add('card-overview');
   $rate.classList.add('card-rate');
 
+  $container.dataset.title = title;
+
   $img.setAttribute('src', `https://image.tmdb.org/t/p/w300${poster_path}`);
   $img.setAttribute('loading', 'lazy');
 
@@ -42,10 +44,7 @@ export const showCardsByQuery = (query) => {
   query = query.replaceAll(' ', '').toLowerCase();
   return [...document.querySelectorAll('.card-container')].reduce(
     (found, $container) => {
-      const $contents = $container.childNodes[0];
-      const $info = $contents.childNodes[1];
-      const $title = $info.childNodes[0];
-      const title = $title.textContent.replaceAll(' ', '').toLowerCase();
+      const title = $container.dataset.title.replaceAll(' ', '').toLowerCase();
       if (title.includes(query)) {
         $container.style.display = 'block';
         found += 1;
