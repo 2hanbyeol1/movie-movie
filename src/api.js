@@ -1,4 +1,4 @@
-import { API_OPTIONS, GET_TOP_RATED_MOVIES } from '../constant/api.js';
+import { API_OPTIONS, GET_TOP_RATED_MOVIES } from './constants/api.js';
 
 export async function getTopRatedMovies({ language, page }) {
   try {

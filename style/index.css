@@ -12,13 +12,13 @@
 }
 
 body {
-  margin: 0;
   background-color: black;
 }
 
 body::-webkit-scrollbar {
   width: 2px;
 }
+
 body::-webkit-scrollbar-thumb {
   background-color: #4b4b4b;
   border-radius: 10px;
@@ -43,15 +43,8 @@ header.scrollDown {
 }
 
 button {
-  padding: 0;
   border: 0;
   cursor: pointer;
-  background: none;
-}
-
-input {
-  border: 0;
-  outline: none;
 }
 /* --- */
 
@@ -127,13 +120,11 @@ main {
   padding-top: 5.9rem;
   padding-bottom: 0.9rem;
   margin: 0 1rem;
-  display: flex;
-  justify-content: center;
 }
 
 #movie-list {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1.2rem;
 }
 
@@ -237,27 +228,9 @@ main {
   height: 1.5rem;
 }
 
-@media screen and (max-width: 1150px) {
-  #movie-list {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media screen and (max-width: 900px) {
-  #movie-list {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
 @media screen and (max-width: 780px) {
   #search-input {
     width: 100%;
-  }
-}
-
-@media screen and (max-width: 610px) {
-  #movie-list {
-    grid-template-columns: repeat(1, 1fr);
   }
 }
 
@@ -265,6 +238,10 @@ main {
   header {
     flex-direction: column;
     align-items: flex-end;
+  }
+
+  main {
+    padding-top: 7.9rem;
   }
 
   .header-search {

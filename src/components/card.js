@@ -1,5 +1,5 @@
-import { $list } from '../constant/element.js';
-import { LANG } from '../constant/language.js';
+import { $list } from '../constants/element.js';
+import { LANG } from '../constants/language.js';
 
 export const appendCard = (movie, language) => {
   const { id, title, overview, vote_average, poster_path } = movie;
@@ -38,19 +38,4 @@ export const appendCard = (movie, language) => {
   $contents.appendChild($info);
   $container.appendChild($contents);
   $list.appendChild($container);
-};
-
-export const showCardsByQuery = (query) => {
-  query = query.replaceAll(' ', '').toLowerCase();
-  return [...document.querySelectorAll('.card-container')].reduce(
-    (found, $container) => {
-      const title = $container.dataset.title.replaceAll(' ', '').toLowerCase();
-      if (title.includes(query)) {
-        $container.style.display = 'block';
-        found += 1;
-      } else $container.style.display = 'none';
-      return found;
-    },
-    0
-  );
 };
