@@ -7,17 +7,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href="./assets/icon.png" />
     <link rel="apple-touch-icon" href="./assets/icon.png" />
-    <link rel="stylesheet" type="text/css" media="screen" href="./style/reset.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="./style/global.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="./style/index.css" />
   </head>
   <body>
     <header>
       <div class="header-search">
-        <img class="icon" src="./assets/icon.png" />
+        <img class="icon" src="./assets/img/icon.png" />
         <div class="search-container">
           <form id="search-form">
-            <img class="search-icon" src="./assets/search.png" />
-            <input id="search-input" name="query" />
+            <div class="search-input-container">
+              <img class="search-icon" src="./assets/img/search.png" />
+              <input id="search-input" name="query" />
+              <img id="warning-icon" src="./assets/img/warning.png" />
+              <p id="search-warning-msg"></p>
+            </div>
             <button type="submit" id="search-btn">찾기</button>
           </form>
         </div>
@@ -31,7 +35,7 @@
       <section id="not-found">입력하신 검색어와 일치하는 결과가 없습니다 🥹</section>
     </main>
     <button id="scroll-top-btn" class="hide">
-      <img src="./assets/up.png" />
+      <img src="./assets/img/up.png" />
     </button>
     <script type="module" src="./src/index.js"></script>
   </body>

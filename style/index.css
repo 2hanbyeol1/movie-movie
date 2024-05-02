@@ -1,28 +1,3 @@
-/* global */
-@font-face {
-  font-family: "Pretendard-Regular";
-  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff") format("woff");
-  font-weight: 400;
-  font-style: normal;
-}
-
-* {
-  font-family: "Pretendard-Regular";
-}
-
-body {
-  background-color: black;
-}
-
-body::-webkit-scrollbar {
-  width: 2px;
-}
-
-body::-webkit-scrollbar-thumb {
-  background-color: #4b4b4b;
-  border-radius: 10px;
-}
-
 header {
   width: 100%;
   padding: 1rem;
@@ -40,12 +15,6 @@ header {
 header.scrollDown {
   transform: translate(0, -4.9rem);
 }
-
-button {
-  border: 0;
-  cursor: pointer;
-}
-/* --- */
 
 #header-lang-btn {
   color: #ffffff;
@@ -75,7 +44,6 @@ button {
 
 .search-container {
   height: 85%;
-  position: relative;
 }
 
 #search-form {
@@ -85,21 +53,64 @@ button {
   justify-content: center;
 }
 
-.search-icon {
-  width: 1.5rem;
+.search-input-container {
+  height: 100%;
+  position: relative;
+}
+
+.search-icon,
+#warning-icon {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+}
+
+.search-icon {
+  width: 1.5rem;
   left: 0.7rem;
+}
+
+#warning-icon {
+  display: none;
+  width: 1.1rem;
+  right: 0.7rem;
+  cursor: pointer;
+}
+
+#search-warning-msg {
+  display: none;
+  position: absolute;
+  padding: 0.4rem 0.7rem;
+  background-color: #c871c0;
+  border-radius: 0.3rem;
+  right: 0;
+  color: white;
+  transform: translateY(0.2rem);
+}
+
+#search-warning-msg:after {
+  content: "";
+  position: absolute;
+  top: -10px;
+  right: 0.5rem;
+  border-bottom: 12px solid #c871c0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  transform: translateX(-50%);
 }
 
 #search-input {
   width: 28rem;
   height: 100%;
-  padding-left: 2.7rem;
+  padding: 0 2.7rem;
   box-sizing: border-box;
+  border: 1px solid white;
   border-radius: 0.5rem 0 0 0.5rem;
   font-size: 1.2rem;
+}
+
+.error-border {
+  border-color: #c871c0 !important;
 }
 
 #search-btn {
@@ -112,7 +123,11 @@ button {
 }
 
 #search-btn:hover {
-  background: #ce41c1;
+  background-color: #ce41c1;
+}
+
+#search-btn:disabled {
+  background-color: #f9d1f5;
 }
 
 main {
@@ -129,6 +144,14 @@ main {
 
 .card-container {
   cursor: pointer;
+  transform: scale(1);
+  transition: 0.1s;
+}
+
+.card-container:hover {
+  cursor: pointer;
+  transform: scale(1.07);
+  z-index: 1;
 }
 
 .card-contents {
@@ -148,7 +171,7 @@ main {
 .card-info {
   width: 100%;
   height: 100%;
-  padding: 0.7rem 0.5rem;
+  padding: 1.7rem 0.5rem;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
