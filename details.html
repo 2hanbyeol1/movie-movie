@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>상세페이지</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="./assets/icon.png" />
+    <link rel="apple-touch-icon" href="./assets/icon.png" />
+    <link rel="stylesheet" type="text/css" media="screen" href="./style/global.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="./style/details.css" />
+  </head>
+  <body>
+    <header>
+      <div class="header-search">
+        <img class="icon" src="./assets/icon.png" />
+        <div class="search-container">
+          <form id="search-form">
+            <img class="search-icon" src="./assets/search.png" />
+            <input id="search-input" name="query" />
+            <button type="submit" id="search-btn">찾기</button>
+          </form>
+        </div>
+      </div>
+      <button id="header-lang-btn" value="en-US">ENGLISH</button>
+    </header>
+    <main>
+      <section class="movieDetailsSection"></section>
+    </main>
+    <button id="scroll-top-btn" class="hide">
+      <img src="./assets/up.png" />
+    </button>
+    <script type="module" src="./src/details.js"></script>
+  </body>
+</html>

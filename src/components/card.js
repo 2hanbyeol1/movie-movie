@@ -29,7 +29,10 @@ export const appendCard = (movie, language) => {
   $overview.textContent = overview;
   $rate.innerHTML = `<span>${LANG[language].rate}</span> ${vote_average}`;
 
-  $container.addEventListener("click", () => alert(`영화 id : ${id}`));
+  // 클릭시 영화 id에 맞는 상세 페이지로 이동
+  $container.addEventListener("click", () => {
+    window.location.href = `./details.html?id=${id}`;
+  });
 
   $info.appendChild($title);
   $info.appendChild($overview);
