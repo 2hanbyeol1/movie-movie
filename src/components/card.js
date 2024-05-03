@@ -2,6 +2,7 @@ import { $list } from "../constants/element.js";
 import { LANG } from "../constants/language.js";
 
 export const appendCard = (movie, language) => {
+  console.log(movie);
   const { id, title, overview, vote_average, poster_path } = movie;
 
   const $container = document.createElement("li");

@@ -52,7 +52,6 @@ export async function getMovieTrailer() {
     const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/videos?language=en-EN`, API_OPTIONS);
     const responseJson = await response.json();
     if (!response.ok) throw new Error(responseJson.status_message);
-
     return responseJson;
   } catch (e) {
     alert(e);
