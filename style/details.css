@@ -29,9 +29,7 @@ body {
   border-top: 5px solid #a826bc94;
   border-bottom: 5px solid #a826bc94;
   border-radius: 10px;
-  display: flex;
   grid-template-columns: 1fr;
-  flex-direction: column-reverse;
   overflow-y: scroll;
 }
 .review::-webkit-scrollbar {
@@ -40,7 +38,9 @@ body {
 .review-box {
   background-color: white;
   width: 100%;
-  height: 100px;
+  height: 85px;
+  border-radius: 10px;
+  margin-bottom: 12px;
 }
 .input {
   padding-top: 5px;
@@ -144,7 +144,7 @@ body {
   }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 750px) {
   .main {
     display: none;
   }
