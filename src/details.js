@@ -39,7 +39,22 @@ getMovieDetails().then(async (data) => {
   movieDetailsSection.innerHTML = `
         <header class="header">
          <h1 id="title">M O V I E <small id="title-sub">영 화 리 뷰</small></h1>
-        </header>
+          <div class="review"></div>
+        <div class="info">
+         <input type="text" class="id" placeholder="ID를 입력해주세요." />
+         <input type="password" class="pw" placeholder="비밀번호를 입력해주세요." />
+        </div>
+      <div class="input">
+        <textarea type="text" class="text-box" placeholder="관람평을 입력해주세요." ></textarea><button class="but">입력</button>
+      </div>
+      <p class="error">*아이디가 중복되었습니다.<p>
+    </header>
+    <h1 class="logo">
+      <a href="http://127.0.0.1:5500/index.html" title="웹 사이트로 뒤로가기" id="back">
+        <img class="back" src="./assets/img/back.png" width="30" height="30" />
+      </a>
+    </h1>
+         </header>
         <div class="main">
          <div class="title">
              <h1 class="movie-title">
@@ -47,9 +62,9 @@ getMovieDetails().then(async (data) => {
              </h1>
         </div>
         <form class="main-img">
-        <img src="https://image.tmdb.org/t/p/w500/${data.poster_path}" class="img" />
+        <img src="https://image.tmdb.org/t/p/w500/${data.poster_path}" class="img"  />
         <iframe 
-          width="560" height="390" 
+          width="690" height="390" 
           src="https://www.youtube.com/embed/${movieKey}?mute=1&autoplay=1"
           title="YouTube video player" frameborder="0" 
           allow="accelerometer; autoplay; clipboard-write; 
@@ -73,4 +88,22 @@ getMovieDetails().then(async (data) => {
         </div>
         </div>
         `;
+
+  // 입력란에 입력된 값 가져와서 출력
+  document.querySelector(".but").addEventListener("click", () => {
+    const reviewValue = document.querySelector(".text-box").value;
+    const reviewBox = document.querySelector(".review");
+    const newReviewBox = document.createElement("div");
+    newReviewBox.classList.add("review-box");
+    newReviewBox.textContent = reviewValue;
+    reviewBox.prepend(newReviewBox);
+  });
+
+  // 비밀번호 입력 시 **로 표시
+  document.querySelector(".pw").addEventListener("input", () => {
+    const passwordInput = document.querySelector(".pw");
+    const password = passwordInput.value;
+    const hiddenPassword = "*".repeat(password.length);
+    passwordInput.value = hiddenPassword;
+  });
 });
