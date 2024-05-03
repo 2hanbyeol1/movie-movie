@@ -1,6 +1,7 @@
 // index
 export const $header = document.querySelector("header");
-export const $langBtn = document.querySelector("#header-lang-btn");
+export const $sortBtn = document.querySelector("#sort-btn");
+export const $langBtn = document.querySelector("#lang-btn");
 export const $searchForm = document.querySelector("#search-form");
 export const $searchInput = document.querySelector("#search-input");
 export const $warningIcon = document.querySelector("#warning-icon");
