@@ -1,4 +1,5 @@
 import {
+  $sortBtn,
   $langBtn,
   $searchForm,
   $searchInput,
@@ -12,15 +13,17 @@ import { searchMovieByQuery } from "./feature/search.js";
 import { changeLanguage } from "./feature/language.js";
 import { hideHeaderOnScrollDown, hideScrollTopButtonOnTop, scrollToTop } from "./feature/event.js";
 import { checkStringLength } from "./feature/validation.js";
+import { sortBy } from "./feature/sort.js";
 
 // 상태
 let language = "ko-KR"; // en-US
 let page = 1;
 let prevQuery = "";
 let prevScrollTop = 0;
+let sortMethod = "high-rated";
 
 // 로드 시 실행
-get20Movies({ language, page });
+get20Movies({ language, page, sortMethod });
 
 document.addEventListener("scroll", () => {
   const nextScrollTop = window.scrollY || 0;
@@ -30,8 +33,13 @@ document.addEventListener("scroll", () => {
   hideScrollTopButtonOnTop();
 });
 
+$sortBtn.addEventListener("change", (e) => {
+  sortMethod = e.target.value;
+  sortBy(sortMethod);
+});
+
 $langBtn.addEventListener("click", (e) => {
-  changeLanguage({ language: e.target.value, page });
+  changeLanguage({ language: e.target.value, page, sortMethod });
   prevQuery = "";
 });
 

@@ -2,7 +2,7 @@ import { $list } from "../constants/element.js";
 import { LANG } from "../constants/language.js";
 
 export const appendCard = (movie, language) => {
-  const { id, title, overview, vote_average, poster_path } = movie;
+  const { id, title, overview, vote_average, poster_path, release_date } = movie;
 
   const $container = document.createElement("li");
   const $contents = document.createElement("article");
@@ -10,7 +10,9 @@ export const appendCard = (movie, language) => {
   const $info = document.createElement("div");
   const $title = document.createElement("div");
   const $overview = document.createElement("div");
+  const $end = document.createElement("div");
   const $rate = document.createElement("div");
+  const $date = document.createElement("div");
 
   $container.classList.add("card-container");
   $contents.classList.add("card-contents");
@@ -18,22 +20,29 @@ export const appendCard = (movie, language) => {
   $title.classList.add("card-title");
   $img.classList.add("card-img");
   $overview.classList.add("card-overview");
+  $end.classList.add("card-end");
   $rate.classList.add("card-rate");
+  $date.classList.add("card-date");
 
   $container.dataset.title = title;
+  $container.dataset.rate = vote_average;
+  $container.dataset.release = release_date;
 
   $img.setAttribute("src", `https://image.tmdb.org/t/p/w300${poster_path}`);
   $img.setAttribute("loading", "lazy");
 
   $title.textContent = title;
   $overview.textContent = overview;
-  $rate.innerHTML = `<span>${LANG[language].rate}</span> ${vote_average}`;
+  $rate.textContent = `${LANG[language].rate} ${vote_average}`;
+  $date.textContent = `${LANG[language].release} ${release_date}`;
 
   $container.addEventListener("click", () => alert(`영화 id : ${id}`));
 
+  $end.appendChild($rate);
+  $end.appendChild($date);
   $info.appendChild($title);
   $info.appendChild($overview);
-  $info.appendChild($rate);
+  $info.appendChild($end);
   $contents.appendChild($img);
   $contents.appendChild($info);
   $container.appendChild($contents);
