@@ -36,7 +36,10 @@ export const appendCard = (movie, language) => {
   $rate.textContent = `${LANG[language].rate} ${vote_average}`;
   $date.textContent = `${LANG[language].release} ${release_date}`;
 
-  $container.addEventListener("click", () => alert(`영화 id : ${id}`));
+  // 클릭시 영화 id에 맞는 상세 페이지로 이동
+  $container.addEventListener("click", () => {
+    window.location.href = `./details.html?id=${id}`;
+  });
 
   $end.appendChild($rate);
   $end.appendChild($date);
