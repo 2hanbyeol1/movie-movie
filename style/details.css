@@ -42,15 +42,27 @@ body {
   border-radius: 10px;
   margin-bottom: 12px;
 }
-.input {
+.info {
   padding-top: 5px;
+  display: flex;
+  justify-content: space-around;
+  height: 40px;
+}
+.id {
+  padding-left: 10px;
+}
+.pw {
+  padding-left: 10px;
+}
+.input {
+  padding-top: 10px;
   display: flex;
   align-items: flex-end;
 }
 .but {
   border: 0px;
   width: 15%;
-  height: 40px;
+  height: 80px;
   font-size: 15px;
   color: white;
   background-color: #a826bc94;
@@ -58,10 +70,18 @@ body {
 }
 .text-box {
   width: 85%;
-  height: 40px;
+  height: 80px;
   background-color: rgb(255, 255, 255);
   border: 0px;
   border-radius: 10px 0px 0px 10px;
+  word-break: break-all;
+}
+.error {
+  color: rgb(255, 69, 69);
+  padding-left: 10px;
+  margin-top: 10px;
+  font-size: 13px;
+  letter-spacing: 2px;
 }
 #title {
   display: flex;

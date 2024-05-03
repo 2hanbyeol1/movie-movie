@@ -40,22 +40,25 @@ getMovieDetails().then(async (data) => {
         <header class="header">
          <h1 id="title">M O V I E <small id="title-sub">영 화 리 뷰</small></h1>
           <div class="review">
-            <div class="review-box">야 호</div>
-            <div class="review-box">ㅇ되ㅏ냐</div>
-            <div class="review-box">ㅇㄹㅇㄴㄹㄴ</div>
-            <div class="review-box">ㄴㄹㄴㄹㄴㄹㄹㄴㄹㄴ</div>
-            <div class="review-box">ㄴㄹㄴㅁㅇㅁㅇㄹㄴㄹㄴ</div>
-            <div class="review-box">ㄴㄹㄴㄴㅁㅇㅁㅇㅁㄹㄴㄹ</div>
-            <div class="review-box">ㄴㄹㄴㄹㄹㅈㄹㅈㄹㄴㄹ</div>
-            <div class="review-box">ㄴㄹㅈㅂㄷㄱㄴㄹㄴㄹ</div>
-            <div class="review-box">ㄴㄹㄴㅈㄷ호ㄹㄴㄹ</div>
+            <div class="review-box">ㄴㄹㄴㅈㅇㄹㄴㄹㄴㄹ</div>
+            <div class="review-box">ㄴㄹㄴㅈㅇㄹㄴㄹㄴㄹ</div>
+            <div class="review-box">ㄴㄹㄴㅈㅇㄹㄴㄹㄴㄹ</div>
+            <div class="review-box">ㄴㄹㄴㅈㅇㄹㄴㄹㄴㄹ</div>
+            <div class="review-box">ㄴㄹㄴㅈㅇㄹㄴㄹㄴㄹ</div>
+            <div class="review-box">ㄴㄹㄴㅈㅇㄹㄴㄹㄴㄹ</div>
+            <div class="review-box">ㄴㄹㄴㅈㅇㄹㄴㄹㄴㄹ</div>
+            <div class="review-box">ㄴㄹㄴㅈㅇㄹㄴㄹㄴㄹ</div>
+            <div class="review-box">ㄴㄹㄴㅈㅇㄹㄴㄹㄴㄹ</div>
             <div class="review-box">ㄴㄹㄴㅈㅇㄹㄴㄹㄴㄹ</div>
           </div>
-        <label id="comment"></label>
-        <input type="text" class="text-box" placeholder="관람평을 입력해주세요." /><button class="but">입력</button>
+        <div class="info">
+         <input type="text" class="id" placeholder="ID를 입력해주세요." />
+         <input type="text" class="pw" placeholder="비밀번호를 입력해주세요." />
+        </div>
       <div class="input">
-        <input type="text" class="text-box" placeholder="관람평을 입력해주세요." /><button class="but">입력</button>
+        <textarea type="text" class="text-box" placeholder="관람평을 입력해주세요." ></textarea><button class="but">입력</button>
       </div>
+      <p class="error">*아이디가 중복되었습니다.<p>
     </header>
     <h1 class="logo">
       <a href="http://127.0.0.1:5500/index.html" title="웹 사이트로 뒤로가기" id="back">
