@@ -1,11 +1,12 @@
 import { getMovieCredits, getMovieDetails, getMovieImages, getMovieTrailer } from "./api.js";
 
-//
+// 감독 이름 가져오기
 const getDirector = async () => {
   const result = await getMovieCredits();
   return result.crew.find((item) => item.job === "Director").name;
 };
 
+// 출연진 가져오기
 const getCasts = async () => {
   const result = await getMovieCredits();
   const castsList = result.cast.slice(0, 5);
@@ -13,6 +14,7 @@ const getCasts = async () => {
   return nameList;
 };
 
+// 장르 가져오기
 const getGenre = async () => {
   const result = await getMovieDetails();
   const genreList = result.genres;
@@ -27,6 +29,7 @@ const getMovieKey = async () => {
   return result.results.filter((item) => item.type.includes("Trailer"))[0].key;
 };
 
+// 영화 전반적인 데이터 가져와서 detils.html 로 붙이는 문자열로 가공
 getMovieDetails().then(async (data) => {
   const movieKey = await getMovieKey();
   const director = await getDirector();
