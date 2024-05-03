@@ -75,6 +75,8 @@ body {
   border: 0px;
   border-radius: 10px 0px 0px 10px;
   word-break: break-all;
+  resize: none;
+  padding-top: 10px;
 }
 .error {
   color: rgb(255, 69, 69);

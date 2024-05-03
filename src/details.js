@@ -41,15 +41,6 @@ getMovieDetails().then(async (data) => {
          <h1 id="title">M O V I E <small id="title-sub">영 화 리 뷰</small></h1>
           <div class="review">
             <div class="review-box">ㄴㄹㄴㅈㅇㄹㄴㄹㄴㄹ</div>
-            <div class="review-box">ㄴㄹㄴㅈㅇㄹㄴㄹㄴㄹ</div>
-            <div class="review-box">ㄴㄹㄴㅈㅇㄹㄴㄹㄴㄹ</div>
-            <div class="review-box">ㄴㄹㄴㅈㅇㄹㄴㄹㄴㄹ</div>
-            <div class="review-box">ㄴㄹㄴㅈㅇㄹㄴㄹㄴㄹ</div>
-            <div class="review-box">ㄴㄹㄴㅈㅇㄹㄴㄹㄴㄹ</div>
-            <div class="review-box">ㄴㄹㄴㅈㅇㄹㄴㄹㄴㄹ</div>
-            <div class="review-box">ㄴㄹㄴㅈㅇㄹㄴㄹㄴㄹ</div>
-            <div class="review-box">ㄴㄹㄴㅈㅇㄹㄴㄹㄴㄹ</div>
-            <div class="review-box">ㄴㄹㄴㅈㅇㄹㄴㄹㄴㄹ</div>
           </div>
         <div class="info">
          <input type="text" class="id" placeholder="ID를 입력해주세요." />
