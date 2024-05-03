@@ -1,22 +1,5 @@
 import { getMovieCredits, getMovieDetails, getMovieImages, getMovieTrailer } from "./api.js";
 
-// // 데이터 확인용
-// getMovieTrailer().then((result) => {
-//   console.log(result);
-// });
-
-// getMovieDetails().then((result) => {
-//   console.log(result);
-// });
-
-// getMovieImages().then((result) => {
-//   console.log(result);
-// });
-
-// getMovieCredits().then((result) => {
-//   console.log(result);
-// });
-
 //
 const getDirector = async () => {
   const result = await getMovieCredits();
