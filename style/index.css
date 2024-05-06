@@ -90,13 +90,15 @@ header.scrollDown {
   opacity: 1;
 }
 
+#filter-list.scrollDown {
+  top: 0;
+  visibility: hidden;
+  opacity: 0;
+}
+
 #filter-list h1 {
   font-size: 1.1rem;
   margin-bottom: 0.7rem;
-}
-
-.review-range {
-  width: 20rem;
 }
 
 #genre-list {

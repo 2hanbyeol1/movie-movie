@@ -8,7 +8,6 @@ export const LANG = {
     recent: "최근 순",
     old: "오래된 순",
     searchBtn: "찾기",
-    review: "리뷰",
     genre: "장르",
     rate: "평점",
     release: "개봉"
@@ -22,7 +21,6 @@ export const LANG = {
     recent: "newest",
     old: "oldest",
     searchBtn: "SEARCH",
-    review: "REVIEW",
     genre: "GENRE",
     rate: "Rating",
     release: "Released"

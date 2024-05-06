@@ -9,7 +9,6 @@ import {
   $searchBtn,
   $searchInput,
   $list,
-  $reviewTitle,
   $genreTitle
 } from "../constants/element.js";
 import { get20Movies } from "./movie.js";
@@ -25,7 +24,6 @@ export const changeLanguage = ({ language, page, sortMethod, selectedGenres }) =
   $recent.textContent = LANG[language].recent;
   $old.textContent = LANG[language].old;
   $searchBtn.textContent = LANG[language].searchBtn;
-  $reviewTitle.textContent = LANG[language].review;
   $genreTitle.textContent = LANG[language].genre;
   $searchInput.value = "";
   $searchInput.focus();

@@ -3,10 +3,10 @@ import { $header, $filterList, $scrollTopBtn } from "../constants/element.js";
 export const hideHeaderOnScrollDown = (prevScrollTop, nextScrollTop) => {
   if (nextScrollTop > prevScrollTop) {
     $header.classList.add("scrollDown");
-    $filterList.classList.remove("active");
+    $filterList.classList.add("scrollDown");
   } else {
     $header.classList.remove("scrollDown");
-    $filterList.classList.add("active");
+    $filterList.classList.remove("scrollDown");
   }
 };
 

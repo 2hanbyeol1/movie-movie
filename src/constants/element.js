@@ -2,7 +2,6 @@
 export const $header = document.querySelector("header");
 export const $filterBtn = document.querySelector("#filter-btn");
 export const $filterList = document.querySelector("#filter-list");
-export const $reviewTitle = document.querySelector("#review-title");
 export const $genreTitle = document.querySelector("#genre-title");
 export const $genreList = document.querySelector("#genre-list");
 export const $highRated = document.querySelector("#high-rated");
