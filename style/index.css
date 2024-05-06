@@ -91,9 +91,9 @@ header.scrollDown {
 }
 
 #filter-list.scrollDown {
-  top: 0;
-  visibility: hidden;
-  opacity: 0;
+  top: 0 !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
 }
 
 #filter-list h1 {
@@ -378,5 +378,11 @@ main {
 
   header.scrollDown {
     transform: translate(0, -7.9rem);
+  }
+
+  #filter-list.active {
+    top: 8rem;
+    visibility: visible;
+    opacity: 1;
   }
 }
