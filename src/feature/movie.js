@@ -2,17 +2,18 @@ import { $list, $notFound } from "../constants/element.js";
 import { LANG } from "../constants/language.js";
 import { getTopRatedMovies } from "../api.js";
 import { sortBy } from "./sort.js";
+import { showCardsByGenre } from "./genre.js";
 
-export const get20Movies = ({ language, page, sortMethod }) => {
-  getTopRatedMovies({ language, page }).then((movies) => {
-    movies?.forEach((movie) => appendCard(movie, language));
-    sortBy(sortMethod);
-  });
+export const get20Movies = async ({ language, page, sortMethod, selectedGenres }) => {
+  const movies = await getTopRatedMovies({ language, page });
+  movies?.forEach((movie) => appendCard(movie, language));
+  sortBy(sortMethod);
+  showCardsByGenre(selectedGenres);
   $notFound.style.display = "none";
 };
 
 const appendCard = (movie, language) => {
-  const { id, title, overview, vote_average, poster_path, release_date } = movie;
+  const { id, title, overview, vote_average, poster_path, release_date, genre_ids } = movie;
 
   const $container = document.createElement("li");
   const $contents = document.createElement("article");
@@ -37,6 +38,7 @@ const appendCard = (movie, language) => {
   $container.dataset.title = title;
   $container.dataset.rate = vote_average;
   $container.dataset.release = release_date;
+  $container.dataset.genre = genre_ids;
 
   $img.setAttribute("src", `https://image.tmdb.org/t/p/w300${poster_path}`);
   $img.setAttribute("loading", "lazy");
