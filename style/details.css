@@ -5,10 +5,15 @@ body {
   margin: 0px;
   background-color: rgb(39, 39, 39);
 }
+strong {
+  color: white;
+}
+/*뒤로 가기*/
 .logo {
   margin: 0px;
   padding: 20px;
 }
+/*오른쪽 고정 리뷰 창*/
 .header {
   width: 400px;
   height: 100%;
@@ -18,19 +23,32 @@ body {
   color: #a826bc94;
   overflow: auto;
   right: 0px;
+  z-index: auto;
 }
-.text-box {
+#title {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  line-height: 40px;
+  font-size: 40px;
+  color: #a826bc94;
+  margin-top: 50px;
+  text-shadow: 1px 1px 1px rgb(0, 0, 0);
+}
+#title-sub {
   font-size: 15px;
-  padding-left: 10px;
 }
+/*리뷰 입력 받는 창*/
 .review {
   width: 100%;
-  height: 600px;
+  height: 65%;
   border-top: 5px solid #a826bc94;
   border-bottom: 5px solid #a826bc94;
-  border-radius: 10px;
+  border-radius: 20px;
   grid-template-columns: 1fr;
   overflow-y: scroll;
+  font-size: 15px;
+  color: black;
 }
 .review::-webkit-scrollbar {
   display: none;
@@ -41,7 +59,43 @@ body {
   height: 85px;
   border-radius: 10px;
   margin-bottom: 12px;
+  display: block;
+  align-items: center;
 }
+.review-text {
+  font-size: 15px;
+  width: 100%;
+  height: 50%;
+  display: flex;
+  align-items: center;
+  word-break: break-all;
+  padding-top: 15px;
+  padding-left: 5px;
+  overflow-y: scroll;
+}
+.review-text::-webkit-scrollbar {
+  display: none;
+}
+.data-modify {
+  display: flex;
+  align-content: flex-end;
+  justify-content: flex-end;
+}
+.modify {
+  color: #a826bc94;
+  background-color: transparent;
+  border: none;
+  font-size: 12px;
+  padding-right: 2px;
+}
+.delete {
+  color: rgb(255, 69, 69);
+  background-color: transparent;
+  border: none;
+  font-size: 12px;
+  margin-right: 5px;
+}
+/*리뷰 입력 창*/
 .info {
   padding-top: 5px;
   display: flex;
@@ -85,18 +139,7 @@ body {
   font-size: 13px;
   letter-spacing: 2px;
 }
-#title {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  line-height: 40px;
-  font-size: 40px;
-  color: #a826bc94;
-  margin-top: 50px;
-}
-#title-sub {
-  font-size: 15px;
-}
+/*상세 페이지 - 메인*/
 .main {
   display: flex;
   flex-direction: column;
@@ -120,6 +163,7 @@ body {
   font-size: 15px;
   color: rgb(160, 160, 160);
 }
+/*상세 페이지 - 이미지&트레일러*/
 .main-img {
   padding: 0px;
   display: flex;
@@ -130,7 +174,7 @@ body {
   height: 400px;
   padding: 5px;
 }
-
+/*상세 페이지 - 영화 정보*/
 .data {
   width: 65%;
   float: left;
@@ -159,6 +203,20 @@ body {
 #text-title {
   color: white;
   margin: 5px 0px 5px 0px;
+}
+/*상세 페이지 - 스 틸 컷*/
+.photo-g {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.photo {
+  width: 300px;
+  height: 400px;
+  margin: 80px 10px 20px 30px;
+  list-style: none;
+  display: inline-block;
+  background-color: green;
 }
 @media screen and (max-width: 1500px) {
   .main-img {
