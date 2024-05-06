@@ -30,117 +30,181 @@ const getMovieKey = async () => {
   return result.results.filter((item) => item.type.includes("Trailer"))[0].key;
 };
 
-// 영화 전반적인 데이터 가져와서 detils.html 로 붙이는 문자열로 가공
+// 영화 전반적인 데이터 가져와서 details.html 로 붙이는 문자열로 가공
 getMovieDetails().then(async (data) => {
   const movieKey = await getMovieKey();
   const director = await getDirector();
   const casts = await getCasts();
   const genres = await getGenre();
   const movieDetailsSection = document.querySelector(".movieDetailsSection");
-  movieDetailsSection.innerHTML = `
-        <header class="header">
-         <h1 id="title">M O V I E <small id="title-sub">영 화 리 뷰</small></h1>
-          <div class="review"></div>
+  if (movieDetailsSection) {
+    movieDetailsSection.innerHTML = `
+      <header class="header">
+        <h1 id="title">M O V I E <small id="title-sub">영 화 리 뷰</small></h1>
+        <div class="review"></div>
         <div class="info">
-         <input type="text" class="id" id="id" placeholder="ID를 입력해주세요." />
-         <input type="password" class="pw" id="pw" placeholder="비밀번호를 입력해주세요." />
+          <input type="text" class="id" id="id" placeholder="ID를 입력해주세요." />
+          <input type="password" class="pw" id="pw" placeholder="비밀번호를 입력해주세요." />
         </div>
-      <div class="input">
-        <textarea type="text" class="text-box" placeholder="관람평을 입력해주세요." ></textarea><button class="but">입력</button>
-      </div>
-      <p class="error"><p>
-    </header>
-    <h1 class="logo">
-      <a href="http://127.0.0.1:5500/index.html" title="웹 사이트로 뒤로가기" id="back">
-        <img class="back" src="./assets/img/back.png" width="30" height="30" />
-      </a>
-    </h1>
-         </header>
-        <div class="main">
-         <div class="title">
-             <h1 class="movie-title">
-                <small class="year">Movie <em>|</em> 리뷰 & 정보</small>${data.title}
-             </h1>
+        <div class="input">
+          <textarea type="text" class="text-box" id="content" placeholder="관람평을 입력해주세요." ></textarea>
+          <button class="input_btn">입력</button>
+        </div>
+        <p class="error"></p>
+      </header>
+      <h1 class="logo">
+        <a href="http://127.0.0.1:5500/index.html" title="웹 사이트로 뒤로가기" id="back">
+          <img class="back" src="./assets/img/back.png" width="30" height="30" />
+        </a>
+      </h1>
+      <div class="main">
+        <div class="title">
+          <h1 class="movie-title">
+            <small class="year">Movie <em>|</em> 리뷰 & 정보</small>${data.title}
+          </h1>
         </div>
         <form class="main-img">
-        <img src="https://image.tmdb.org/t/p/w500/${data.poster_path}" class="img"  />
-        <iframe 
-          width="690" height="390" 
-          src="https://www.youtube.com/embed/${movieKey}?mute=1&autoplay=1"
-          title="YouTube video player" frameborder="0" 
-          allow="accelerometer; autoplay; clipboard-write; 
+          <img src="https://image.tmdb.org/t/p/w500/${data.poster_path}" class="img"  />
+          <iframe 
+            width="690" height="390" 
+            src="https://www.youtube.com/embed/${movieKey}?mute=1&autoplay=1"
+            title="YouTube video player" frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; 
             encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-        </iframe>
-
+          </iframe>
         </form>
         <div class="data">
-        <p class="name">
+          <p class="name">
             감독 : ${director} <em>|</em>
             <span>주요 출연진 : ${casts}</span>
-        </p>
-        <p class="number">
+          </p>
+          <p class="number">
             개봉일: ${data.release_date} <em>|</em> ${genres} <em>|</em> ⭐️ ${data.vote_average}
-        </p>
-
-        <div class="text">
+          </p>
+          <div class="text">
             <h3 id="text-title">소개</h3>
             ${data.overview}
+          </div>
         </div>
+      </div>
+    `;
+  }
+
+  const inputBtn = document.querySelector(".input_btn");
+  const review = document.querySelector(".review");
+  if (inputBtn && review) {   // 카드가 존재하지않는데 삭제하기 Prompt 창이 뜨는걸 방지
+    inputBtn.addEventListener("click", () => {
+      const IdInput = document.getElementById("id");
+      const ContentInput = document.getElementById("content");
+      const PassInput = document.getElementById("pw");
+
+      if (IdInput && ContentInput && PassInput) {
+        // 로컬 스토리지에서 글쓴이 정보 가져옴
+        let userInfos = JSON.parse(localStorage.getItem("userInfos")) || [];
+        // 새로운 사용자 정보를 프로퍼티로 생성
+        let userInfo = {
+          id: IdInput.value,
+          content: ContentInput.value,
+          pass: PassInput.value
+        };
+        // 사용자 정보를 배열에 추가
+        userInfos.push(userInfo);
+        // 업데이트된 사용자 정보를 로컬 스토리지에 저장
+        localStorage.setItem("userInfos", JSON.stringify(userInfos));
+        // 카드 생성
+        const cardHTML = `
+        <div class="card border-primary mb-3" style="max-width: 18rem;">
+          <div class="card-header">리뷰</div>
+          <div class="card-body text-primary">
+            <h5 class="card-title">${userInfo.id}</h5>
+            <p class="card-text">${userInfo.content}</p>
+            <button type="button" class="btn btn-outline-primary delete-btn">삭제하기</button>
+            <button type="button" class="btn btn-outline-primary edit-btn" data-id="${userInfos.length - 1}" data-pass="${userInfo.pass}">수정하기</button>
+          </div>
         </div>
-        </div>
-        `;
+      `;
+        review.innerHTML += cardHTML;
 
-  document.querySelector(".but").addEventListener("click", () => {
-    const idValue = document.querySelector(".id").value;
-    const passwordValue = document.querySelector(".pw").value;
-    const reviewValue = document.querySelector(".text-box").value;
-    const reviewBox = document.querySelector(".review");
-    const newReviewBox = document.createElement("div");
-    const error = document.getElementsByClassName(".error");
-    newReviewBox.classList.add("review-box");
+        //테스트
+        console.log('등록 완료');
+        console.log('등록 Pass:' + userInfo.pass);
+        console.log(userInfos);
 
-    for (let i = 0; i < badword.length; i++) {
-      if (reviewValue === badword[i]) {
-        alert("비속어가 포함되어 있습니다.");
-        return;
-      }
-    }
-
-    //css 사용해서 우측 으로 이동!!!
-    newReviewBox.innerHTML = `
-              <div class="review-content">
-                  <p>ID: ${idValue}</p>
-                  <p> ${reviewValue}</p>
-              </div>
-              <div class="review-buttons">
-                  <button class="delete-button">삭제</button>
-                  <button class="edit-button">수정</button>
-              </div>
-          `;
-
-    reviewBox.prepend(newReviewBox);
-
-    newReviewBox.querySelector(".delete-button").addEventListener("click", () => {
-      const inputPassword = prompt("비밀번호를 입력하세요:");
-      if (inputPassword === passwordValue) {
-        newReviewBox.remove();
-      } else {
-        alert("비밀번호가 일치하지 않습니다.");
+        // 로컬 스토리지 초기화(데이터 초기화 할때 주석 지우기)
+        //window.localStorage.clear();
       }
     });
 
-    newReviewBox.querySelector(".edit-button").addEventListener("click", () => {
-      const inputPassword = prompt("비밀번호를 입력하세요:");
-      if (inputPassword == passwordValue) {
-        const reviewContent = newReviewBox.querySelector(".review-content");
-        const reviewText = reviewContent.querySelector("p:last-child");
-        const newText = prompt("리뷰를 수정하세요:", reviewText.textContent);
-        if (newText !== null) {
-          reviewText.textContent = newText;
+    // 삭제 기능 
+    review.addEventListener("click", (e) => {
+      // 클래스가 delete-btn 인지 체크
+      if (e.target.classList.contains("delete-btn")) {
+        // 삭제하기 버튼이 속한 카드 요소를 선택
+        const card = e.target.closest(".card");
+        // closest() 메서드는 현재 요소를 포함하여 상위 요소 중 가장 가까운 조상 요소를 찾음
+        const cardTitle = card.querySelector(".card-title").textContent;
+        const userInput = prompt("비밀번호를 입력하세요:");
+        // getItem 로컬 스토리지에서 사용자 정보 가져옴
+        const userInfoData = localStorage.getItem("userInfos");
+        if (userInfoData) {
+          const userInfos = JSON.parse(userInfoData);
+          // 카드에 맞는 사용자 정보 체크(찾기)
+          const userInfo = userInfos.find(info => info.id === cardTitle);
+
+          // 사용자 id와 입력된 비밀번호 동시비교
+          if (userInfo.id && userInput === userInfo.pass) {  
+            // 사용자 아이디를 삭제하고 로컬 스토리지 업데이트
+            // (첫번째 매개변수는 삭제를 시작할 인덱스, 두번째 매개변수는 삭제할 요수 수 즉 1을 사용하여 해당 정보만 삭제)
+            userInfos.splice(userInfos.indexOf(userInfo), 1); 
+            // 로컬 스토리지 업데이트
+            localStorage.setItem("userInfos", JSON.stringify(userInfos));
+            // 카드 삭제
+            card.remove();
+
+            console.log('input_pass:' + userInput);
+            alert("카드가 삭제되었습니다.");
+            // 데이터 체크 용도로 넣은것 굳이 필요없음
+            console.log(userInfos);
+          } else {
+            console.log('input_pass:' +userInput);
+            alert("비밀번호가 다릅니다.");
+          }
         }
-      } else {
-        alert("비밀번호가 일치하지 않습니다.");
       }
     });
-  });
+
+    // 수정기능
+    review.addEventListener("click", (e) => {
+      if (e.target.classList.contains("edit-btn")) {
+        const card = e.target.closest(".card"); // 클릭된 수정 버튼이 속한 카드 요소 찾기
+        const cardId = e.target.dataset.id; // 수정 버튼에 연결된 사용자 정보의 인덱스 가져오기
+        const userPass = e.target.dataset.pass; // 수정 버튼에 연결된 사용자 비밀번호 가져오기
+        const userInput = prompt("비밀번호를 입력하세요:");
+
+        if (userInput === userPass) {
+          const newContent = prompt("수정할 내용을 입력하세요:");
+
+          if (newContent !== null && newContent.trim() !== '') {
+            // 로컬 스토리지에서 해당 사용자 정보 가져오기(불러오기)
+            let userInfos = JSON.parse(localStorage.getItem("userInfos")) || [];
+
+            // 해당 카드에 대한 사용자 정보 업데이트
+            userInfos[cardId].content = newContent;
+            localStorage.setItem("userInfos", JSON.stringify(userInfos)); // 수정된 배열을 다시 로컬 스토리지에 저장
+
+            // 카드 내용 업데이트
+            const cardContent = card.querySelector(".card-text");
+            cardContent.textContent = newContent;
+            alert("카드가 수정되었습니다.");
+            // 데이터 체크용도
+            console.log(userInfos);
+          }
+        } else {
+          alert("비밀번호가 다릅니다.");
+        }
+      }
+    });
+  }
 });
+
+
