@@ -41,8 +41,8 @@ getMovieDetails().then(async (data) => {
          <h1 id="title">M O V I E <small id="title-sub">영 화 리 뷰</small></h1>
           <div class="review"></div>
         <div class="info">
-         <input type="text" class="id" placeholder="ID를 입력해주세요." />
-         <input type="password" class="pw" placeholder="비밀번호를 입력해주세요." />
+         <input type="text" class="id" id="id" placeholder="ID를 입력해주세요." />
+         <input type="password" class="pw" id="pw" placeholder="비밀번호를 입력해주세요." />
         </div>
       <div class="input">
         <textarea type="text" class="text-box" placeholder="관람평을 입력해주세요." ></textarea><button class="but">입력</button>
@@ -89,21 +89,50 @@ getMovieDetails().then(async (data) => {
         </div>
         `;
 
-  // 입력란에 입력된 값 가져와서 출력
   document.querySelector(".but").addEventListener("click", () => {
+    const idValue = document.querySelector(".id").value;
+    const passwordValue = document.querySelector(".pw").value;
     const reviewValue = document.querySelector(".text-box").value;
     const reviewBox = document.querySelector(".review");
+
     const newReviewBox = document.createElement("div");
     newReviewBox.classList.add("review-box");
-    newReviewBox.textContent = reviewValue;
-    reviewBox.prepend(newReviewBox);
-  });
 
-  // 비밀번호 입력 시 **로 표시
-  document.querySelector(".pw").addEventListener("input", () => {
-    const passwordInput = document.querySelector(".pw");
-    const password = passwordInput.value;
-    const hiddenPassword = "*".repeat(password.length);
-    passwordInput.value = hiddenPassword;
+    //css 사용해서 우측 으로 이동!!!
+    newReviewBox.innerHTML = `
+              <div class="review-content">
+                  <p>ID: ${idValue}</p>
+                  <p> ${reviewValue}</p>
+              </div>
+              <div class="review-buttons">
+                  <button class="delete-button">삭제</button>
+                  <button class="edit-button">수정</button>
+              </div>
+          `;
+
+    reviewBox.prepend(newReviewBox);
+
+    newReviewBox.querySelector(".delete-button").addEventListener("click", () => {
+      const inputPassword = prompt("비밀번호를 입력하세요:");
+      if (inputPassword === passwordValue) {
+        newReviewBox.remove();
+      } else {
+        alert("비밀번호가 일치하지 않습니다.");
+      }
+    });
+
+    newReviewBox.querySelector(".edit-button").addEventListener("click", () => {
+      const inputPassword = prompt("비밀번호를 입력하세요:");
+      if (inputPassword == passwordValue) {
+        const reviewContent = newReviewBox.querySelector(".review-content");
+        const reviewText = reviewContent.querySelector("p:last-child");
+        const newText = prompt("리뷰를 수정하세요:", reviewText.textContent);
+        if (newText !== null) {
+          reviewText.textContent = newText;
+        }
+      } else {
+        alert("비밀번호가 일치하지 않습니다.");
+      }
+    });
   });
 });
