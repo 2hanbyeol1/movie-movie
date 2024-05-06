@@ -1,4 +1,5 @@
 import { getMovieCredits, getMovieDetails, getMovieImages, getMovieTrailer } from "./api.js";
+import badword from "./constants/badword.js";
 
 // 감독 이름 가져오기
 const getDirector = async () => {
@@ -47,7 +48,7 @@ getMovieDetails().then(async (data) => {
       <div class="input">
         <textarea type="text" class="text-box" placeholder="관람평을 입력해주세요." ></textarea><button class="but">입력</button>
       </div>
-      <p class="error">*아이디가 중복되었습니다.<p>
+      <p class="error"><p>
     </header>
     <h1 class="logo">
       <a href="http://127.0.0.1:5500/index.html" title="웹 사이트로 뒤로가기" id="back">
@@ -94,9 +95,16 @@ getMovieDetails().then(async (data) => {
     const passwordValue = document.querySelector(".pw").value;
     const reviewValue = document.querySelector(".text-box").value;
     const reviewBox = document.querySelector(".review");
-
     const newReviewBox = document.createElement("div");
+    const error = document.getElementsByClassName(".error");
     newReviewBox.classList.add("review-box");
+
+    for (let i = 0; i < badword.length; i++) {
+      if (reviewValue === badword[i]) {
+        alert("비속어가 포함되어 있습니다.");
+        return;
+      }
+    }
 
     //css 사용해서 우측 으로 이동!!!
     newReviewBox.innerHTML = `
