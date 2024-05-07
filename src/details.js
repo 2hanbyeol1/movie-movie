@@ -149,12 +149,14 @@ getMovieDetails().then(async (data) => {
     newReviewBox.classList.add("review-box");
     newReviewBox.innerHTML = `
             <div class="review-content">
-              <p>ID: ${review.id}</p>
-              <p>${review.review}</p>
+              <p >${review.review}</p>
             </div>
+            <div class="user">
+            <p class="user-id">${review.id}</p>
             <div class="review-buttons">
-              <button class="delete-button">삭제</button>
               <button class="edit-button">수정</button>
+              <button class="delete-button">삭제</button>
+              </div>
             </div>
           `;
 
