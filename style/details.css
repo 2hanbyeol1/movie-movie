@@ -9,6 +9,12 @@ body {
   margin: 0px;
   padding: 20px;
 }
+.review-content{
+  background-color: white;
+  width: 400px;
+  text-align: left;
+  border-radius: 5px;
+}
 .header {
   width: 400px;
   height: 100%;
@@ -59,7 +65,7 @@ body {
   display: flex;
   align-items: flex-end;
 }
-.but {
+.input_btn {
   border: 0px;
   width: 15%;
   height: 80px;
