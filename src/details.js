@@ -36,7 +36,7 @@ const getMovieKey = async () => {
   return result.results.filter((item) => item.type.includes("Trailer"))[0].key;
 };
 
-// 영화 전반적인 데이터 가져와서 detils.html 로 붙이는 문자열로 가공
+// 영화 전반적인 데이터 가져와서 details.html 로 붙이는 문자열로 가공
 getMovieDetails().then(async (data) => {
   const movieID = await getMovieID();
   const movieKey = await getMovieKey();
@@ -52,7 +52,8 @@ getMovieDetails().then(async (data) => {
          <input type="text" class="id" id="id" placeholder="ID를 입력해주세요." />
          <input type="password" class="pw" id="pw" placeholder="비밀번호를 입력해주세요." />
         </div>
-      <div class="input">
+      </div>
+        <div class="input">
         <textarea type="text" class="text-box" placeholder="관람평을 입력해주세요." ></textarea><button class="btn">입력</button>
       </div>
       <p class="error"><p>
@@ -62,14 +63,13 @@ getMovieDetails().then(async (data) => {
         <img class="back" src="./assets/img/back.png" width="30" height="30" />
       </a>
     </h1>
-         </header>
-        <div class="main">
-         <div class="title">
-             <h1 class="movie-title">
-                <small class="year">Movie <em>|</em> 리뷰 & 정보</small>${data.title}
-             </h1>
-        </div>
-        <form class="main-img">
+    <div class="main">
+      <div class="title">
+          <h1 class="movie-title">
+            <small class="year">Movie <em>|</em> 리뷰 & 정보</small>${data.title}
+          </h1>
+      </div>
+      <form class="main-img">
         <img src="https://image.tmdb.org/t/p/w500/${data.poster_path}" class="img"  />
         <iframe 
           width="690" height="390" 
@@ -78,19 +78,16 @@ getMovieDetails().then(async (data) => {
           allow="accelerometer; autoplay; clipboard-write; 
             encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
         </iframe>
-
-
-        </form>
-        <div class="data">
+      </form>
+      <div class="data">
         <p class="name">
-            감독 : ${director} <em>|</em>
-            <span>주요 출연진 : ${casts}</span>
+          <strong>감독</strong> : ${director} <em>|</em>
+          <span> <strong>주요 출연진</strong> : ${casts} </span>
         </p>
         <p class="number">
-            개봉일: ${data.release_date} <em>|</em> ${genres} <em>|</em> ⭐️ ${data.vote_average}
+          <strong>개봉일</strong>: ${data.release_date} <em>|</em> ${genres} <em>|</em> ⭐️ ${data.vote_average}
         </p>
-
-        <div class="text">
+          <div class="text">
             <h3 id="text-title">소개</h3>
             ${data.overview}
         </div>
