@@ -13,9 +13,9 @@ const showCardsByQuery = (query) => {
   return [...document.querySelectorAll(".card-container")].reduce((found, $container) => {
     const title = $container.dataset.title.replaceAll(" ", "").toLowerCase();
     if (title.includes(query)) {
-      $container.style.display = "block";
+      $container.classList.remove("search");
       found += 1;
-    } else $container.style.display = "none";
+    } else $container.classList.add("search");
     return found;
   }, 0);
 };

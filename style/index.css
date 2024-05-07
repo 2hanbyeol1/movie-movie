@@ -7,12 +7,12 @@ header {
   align-items: center;
   position: fixed;
   background-color: black;
-  z-index: 2;
+  z-index: 3;
   transition: 1s;
   box-sizing: border-box;
 }
 
-.scrollDown {
+header.scrollDown {
   transform: translate(0, -4.9rem);
   top: 0 !important;
 }
@@ -37,7 +37,8 @@ header {
 }
 
 .header-btn-group button:hover,
-.header-btn-group select:hover {
+.header-btn-group select:hover,
+#filter-btn.active {
   box-shadow: 0 0 10px 5px #a826bc94;
 }
 
@@ -64,6 +65,61 @@ header {
   top: 50%;
   transform: translateY(-50%);
   right: 1rem;
+}
+
+#filter-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 3rem;
+  width: 100%;
+  padding: 1rem;
+  box-sizing: border-box;
+  color: white;
+  position: fixed;
+  top: 0;
+  z-index: 2;
+  transition: 1s;
+  visibility: hidden;
+  opacity: 0;
+  background: linear-gradient(rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 75%) 70%, rgba(0, 0, 0, 0) 100%);
+}
+
+#filter-list.active {
+  top: 5rem;
+  visibility: visible;
+  opacity: 1;
+}
+
+#filter-list.scrollDown {
+  top: 0 !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
+#filter-list h1 {
+  font-size: 1.1rem;
+  margin-bottom: 0.7rem;
+}
+
+#genre-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.1rem;
+}
+
+#genre-list button {
+  font-size: 0.8rem;
+  padding: 0.4rem 1rem;
+  display: inline-block;
+  border: 1px solid #555555;
+  border-radius: 0.5rem;
+  background-color: black;
+  color: white;
+}
+
+#genre-list button:hover,
+#genre-list button.active {
+  background-color: #a826bc52;
 }
 
 .header-search {
@@ -125,7 +181,7 @@ header {
   transform: translateY(0.2rem);
 }
 
-#search-warning-msg:after {
+#search-warning-msg::after {
   content: "";
   position: absolute;
   top: -10px;
@@ -191,6 +247,11 @@ main {
   z-index: 1;
 }
 
+.card-container.genre,
+.card-container.search {
+  display: none;
+}
+
 .card-contents {
   position: relative;
   height: 100%;
@@ -230,7 +291,7 @@ main {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  background-color: green;
+  
 }
 
 .card-overview {
@@ -294,13 +355,13 @@ main {
   height: 1.5rem;
 }
 
-@media screen and (max-width: 780px) {
+@media screen and (max-width: 1020px) {
   #search-input {
     width: 100%;
   }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 860px) {
   header {
     flex-direction: column;
     align-items: flex-end;
@@ -310,11 +371,20 @@ main {
     padding-top: 7.9rem;
   }
 
-  .header-search {
+  .header-search,
+  .search-container,
+  #search-form,
+  .search-input-container {
     width: 100%;
   }
 
-  .scrollDown {
+  header.scrollDown {
     transform: translate(0, -7.9rem);
+  }
+
+  #filter-list.active {
+    top: 8rem;
+    visibility: visible;
+    opacity: 1;
   }
 }
