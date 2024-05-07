@@ -63,7 +63,7 @@ function handleClick(event) {
   modal.style.display = "block";
 }
 
-// 모달창 밖이나 사진이 클리되었을때 모달 닫기
+// 모달창 밖이나 사진이 클릭 되었을때 모달 닫기
 window.onclick = function (event) {
   if (event.target == modal) {
     modal.style.display = "none";
@@ -72,6 +72,31 @@ window.onclick = function (event) {
 modalImg.onclick = function () {
   modal.style.display = "none";
 };
+
+// 자동 가로방향 스크롤링 구현 함수
+function autoScroll() {
+  // 오른쪽으로 스크롤되는 속도
+  container.scrollLeft += 1;
+  // 스크롤이 다 되었을때 다시 처음부터 스크롤링 되게 리셋
+  if (container.scrollLeft >= container.scrollWidth - container.clientWidth) {
+    container.scrollLeft = 0;
+  }
+}
+
+// 오토스코롤이 기본값으로 적용
+let scrollInterval = setInterval(autoScroll, 40);
+// 마우스커서가 컨네이너 영역안으로 들어오면 오토스크롤링 멈추기
+container.addEventListener("mouseenter", () => {
+  clearInterval(scrollInterval);
+});
+
+// 마우스커서가 컨테이너 밖으로 떠나면 다시 스크롤 재개
+container.addEventListener("mouseleave", () => {
+  // 인터벌을 클리어 해서 다수의 인터벌이 쌓여서 같이 돌아가게 하는것 (스크롤링 속도가 빨라지는것을 방지)
+  clearInterval(scrollInterval);
+  // 새로운 오토스크롤 인터벌을 주어진 속도로 시작
+  scrollInterval = setInterval(autoScroll, 40);
+});
 
 // 영화 전반적인 데이터 가져와서 details.html 로 붙이는 문자열로 가공
 getMovieDetails().then(async (data) => {
@@ -83,7 +108,7 @@ getMovieDetails().then(async (data) => {
   await getStillCuts();
   const main = document.querySelector(".movie-info");
   main.innerHTML = `
-      <div id="background" style="background-image: url(https://image.tmdb.org/t/p/w500/${data.poster_path})"></div>
+      <div id="background" style="background-image: url(https://image.tmdb.org/t/p/original/${data.poster_path})"></div>
       <div class="title">
           <div class="movie-title">
             <h1 class="year">Movie <em>|</em> 리뷰 & 정보</h1>
@@ -171,8 +196,8 @@ getMovieDetails().then(async (data) => {
             <div class="review-box">
               <p class="review-content">${review.review}</p>
               <div class="review-buttons">
-                <button class="delete-button">삭제</button>
                 <button class="edit-button">수정</button>
+                <button class="delete-button">삭제</button>
               </div>
             </div>
           `;
