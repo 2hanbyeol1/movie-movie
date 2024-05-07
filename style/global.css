@@ -9,6 +9,11 @@
   font-family: "Pretendard-Regular" !important;
 }
 
+html,
+body {
+  height: 100%;
+}
+
 body {
   background-color: black;
 }
@@ -27,8 +32,10 @@ button {
   cursor: pointer;
 }
 
-input {
+input,
+textarea {
   outline: none;
+  border: 0;
 }
 
 /* reset.css */

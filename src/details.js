@@ -81,34 +81,16 @@ getMovieDetails().then(async (data) => {
   const casts = await getCasts();
   const genres = await getGenre();
   await getStillCuts();
-  const movieDetailsSection = document.querySelector(".movieDetailsSection");
-  movieDetailsSection.innerHTML = `
-        <header class="header">
-         <h1 id="title">M O V I E <small id="title-sub">영 화 리 뷰</small></h1>
-          <div class="review"></div>
-        <div class="info">
-         <input type="text" class="id" id="id" placeholder="ID를 입력해주세요." />
-         <input type="password" class="pw" id="pw" placeholder="비밀번호를 입력해주세요." />
-        </div>
-      </div>
-        <div class="input">
-        <textarea type="text" class="text-box" placeholder="관람평을 입력해주세요." ></textarea><button class="btn">입력</button>
-      </div>
-      <p class="error"><p>
-    </header>
-    <h1 class="logo">
-      <a href="http://127.0.0.1:5500/index.html" title="웹 사이트로 뒤로가기" id="back">
-        <img class="back" src="./assets/img/back.png" width="30" height="30" />
-      </a>
-    </h1>
-    <div class="main">
+  const main = document.querySelector(".movie-info");
+  main.innerHTML = `
+      <div id="background" style="background-image: url(https://image.tmdb.org/t/p/w500/${data.poster_path})"></div>
       <div class="title">
-          <h1 class="movie-title">
-            <small class="year">Movie <em>|</em> 리뷰 & 정보</small>${data.title}
-          </h1>
+          <div class="movie-title">
+            <h1 class="year">Movie <em>|</em> 리뷰 & 정보</h1>
+            <h2>${data.title}</h2>
+          </div>
       </div>
-      <form class="main-img">
-        <img src="https://image.tmdb.org/t/p/w500/${data.poster_path}" class="img"  />
+      <div class="main-img">
         <iframe 
           width="690" height="390" 
           src="https://www.youtube.com/embed/${movieKey}?mute=1&autoplay=1"
@@ -116,25 +98,24 @@ getMovieDetails().then(async (data) => {
           allow="accelerometer; autoplay; clipboard-write; 
             encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
         </iframe>
-      </form>
+      </div>
       <div class="data">
         <p class="name">
-          <strong>감독</strong> : ${director} <em>|</em>
-          <span> <strong>주요 출연진</strong> : ${casts} </span>
+          <strong>감독</strong> ${director} <em>|</em>
+          <span> <strong>주요 출연진</strong> ${casts} </span>
         </p>
         <p class="number">
-          <strong>개봉일</strong>: ${data.release_date} <em>|</em> ${genres} <em>|</em> ⭐️ ${data.vote_average}
+          <strong>개봉일</strong> ${data.release_date} <em>|</em> ${genres} <em>|</em> ⭐️ ${data.vote_average}
         </p>
           <div class="text">
             <h3 id="text-title">소개</h3>
             ${data.overview}
         </div>
-        </div>
-        </div>
-        `;
+      </div>
+    `;
 
   const savedReviews = JSON.parse(localStorage.getItem("reviews")) || [];
-  const reviewBox = document.querySelector(".review");
+  const reviewBox = document.querySelector(".reviews");
 
   savedReviews.forEach((review) => {
     // 리뷰를 추가할 때 해당 영화 ID와 저장된 리뷰의 영화 ID를 비교하여 일치할 경우에만 추가
@@ -184,16 +165,14 @@ getMovieDetails().then(async (data) => {
 
   function createReviewBox(review) {
     const newReviewBox = document.createElement("div");
-    newReviewBox.classList.add("review-box");
+    newReviewBox.classList.add("review");
     newReviewBox.innerHTML = `
-            <div class="review-content">
-              <p >${review.review}</p>
-            </div>
-            <div class="user">
-            <p class="user-id">${review.id}</p>
-            <div class="review-buttons">
-              <button class="edit-button">수정</button>
-              <button class="delete-button">삭제</button>
+            <p class="review-id">${review.id}</p>
+            <div class="review-box">
+              <p class="review-content">${review.review}</p>
+              <div class="review-buttons">
+                <button class="delete-button">삭제</button>
+                <button class="edit-button">수정</button>
               </div>
             </div>
           `;
@@ -204,9 +183,7 @@ getMovieDetails().then(async (data) => {
       if (inputPassword === review.password) {
         const index = savedReviews.indexOf(review);
         savedReviews.splice(index, 1);
-
         newReviewBox.remove();
-
         localStorage.setItem("reviews", JSON.stringify(savedReviews));
       } else {
         alert("비밀번호가 일치하지 않습니다.");
@@ -222,7 +199,6 @@ getMovieDetails().then(async (data) => {
         const newText = prompt("리뷰를 수정하세요:", reviewText.textContent);
         if (newText !== null) {
           reviewText.textContent = newText;
-
           review.review = newText;
           localStorage.setItem("reviews", JSON.stringify(savedReviews));
         }
