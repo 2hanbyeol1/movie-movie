@@ -36,6 +36,43 @@ const getMovieKey = async () => {
   return result.results.filter((item) => item.type.includes("Trailer"))[0].key;
 };
 
+const getStillCuts = async () => {
+  const result = await getMovieImages();
+  const stillCuts = result.backdrops;
+  const imgBox = document.getElementById("imageContainer");
+  stillCuts.forEach((image) => {
+    const img = document.createElement("img");
+    img.src = `https://media.themoviedb.org/t/p/w1280${image.file_path}`;
+    imgBox.appendChild(img);
+  });
+};
+
+// 모달창과 모달안의 이미지 지정
+const modal = document.getElementById("imageModal");
+const modalImg = document.getElementById("modalImg");
+
+// 이미지 컨테이너 선택하고 클릭이벤트 적용
+const container = document.getElementById("imageContainer");
+container.addEventListener("click", handleClick);
+
+// 클릭할때 실행될 함수
+function handleClick(event) {
+  // 이미지 클릭시 클릭된 이미지 주소 가져오기
+  modalImg.src = event.target.src;
+  // 모달로 띄우기
+  modal.style.display = "block";
+}
+
+// 모달창 밖이나 사진이 클리되었을때 모달 닫기
+window.onclick = function (event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+};
+modalImg.onclick = function () {
+  modal.style.display = "none";
+};
+
 // 영화 전반적인 데이터 가져와서 details.html 로 붙이는 문자열로 가공
 getMovieDetails().then(async (data) => {
   const movieID = await getMovieID();
@@ -43,6 +80,7 @@ getMovieDetails().then(async (data) => {
   const director = await getDirector();
   const casts = await getCasts();
   const genres = await getGenre();
+  await getStillCuts();
   const movieDetailsSection = document.querySelector(".movieDetailsSection");
   movieDetailsSection.innerHTML = `
         <header class="header">
