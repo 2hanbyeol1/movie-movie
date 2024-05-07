@@ -1,5 +1,12 @@
 import { getMovieCredits, getMovieDetails, getMovieImages, getMovieTrailer } from "./api.js";
 import badword from "./constants/badword.js";
+
+// 영화 ID 가져오기
+const getMovieID = async () => {
+  const result = await getMovieDetails();
+  return result.id;
+};
+
 // 감독 이름 가져오기
 const getDirector = async () => {
   const result = await getMovieCredits();
@@ -31,6 +38,7 @@ const getMovieKey = async () => {
 
 // 영화 전반적인 데이터 가져와서 detils.html 로 붙이는 문자열로 가공
 getMovieDetails().then(async (data) => {
+  const movieID = await getMovieID();
   const movieKey = await getMovieKey();
   const director = await getDirector();
   const casts = await getCasts();
@@ -45,7 +53,7 @@ getMovieDetails().then(async (data) => {
          <input type="password" class="pw" id="pw" placeholder="비밀번호를 입력해주세요." />
         </div>
       <div class="input">
-        <textarea type="text" class="text-box" placeholder="관람평을 입력해주세요." ></textarea><button class="but">입력</button>
+        <textarea type="text" class="text-box" placeholder="관람평을 입력해주세요." ></textarea><button class="btn">입력</button>
       </div>
       <p class="error">*아이디가 중복되었습니다.<p>
     </header>
@@ -71,6 +79,7 @@ getMovieDetails().then(async (data) => {
             encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
         </iframe>
 
+
         </form>
         <div class="data">
         <p class="name">
@@ -93,34 +102,49 @@ getMovieDetails().then(async (data) => {
   const reviewBox = document.querySelector(".review");
 
   savedReviews.forEach((review) => {
-    const newReviewBox = createReviewBox(review);
-    reviewBox.appendChild(newReviewBox);
+    // 리뷰를 추가할 때 해당 영화 ID와 저장된 리뷰의 영화 ID를 비교하여 일치할 경우에만 추가
+    if (review.movieID === movieID) {
+      const newReviewBox = createReviewBox(review);
+      reviewBox.appendChild(newReviewBox);
+    }
   });
 
-  document.querySelector(".but").addEventListener("click", () => {
+  document.querySelector(".btn").addEventListener("click", () => {
     const idValue = document.querySelector(".id").value;
     const passwordValue = document.querySelector(".pw").value;
     const reviewValue = document.querySelector(".text-box").value;
 
+    for (let i = 0; i < savedReviews.length; i++) {
+      if (idValue === savedReviews[i].id) {
+        alert("중복된 ID입니다.");
+        return;
+      }
+    }
+
     for (let i = 0; i < badword.length; i++) {
-      if (reviewValue.value.includes(badword[i])) {
+      if (reviewValue.includes(badword[i])) {
         alert("비속어가 포함 되어 있습니다.");
         return;
       }
     }
 
     const newReview = {
+      movieID: movieID, // 영화의 ID를 추가하여 저장
       id: idValue,
       password: passwordValue,
       review: reviewValue
     };
 
+    // 해당 영화의 리뷰만 저장
     savedReviews.push(newReview);
 
     localStorage.setItem("reviews", JSON.stringify(savedReviews));
 
-    const newReviewBox = createReviewBox(newReview);
-    reviewBox.prepend(newReviewBox);
+    // 해당 영화의 리뷰만 추가
+    if (newReview.movieID === movieID) {
+      const newReviewBox = createReviewBox(newReview);
+      reviewBox.prepend(newReviewBox);
+    }
   });
 
   function createReviewBox(review) {
@@ -137,6 +161,7 @@ getMovieDetails().then(async (data) => {
             </div>
           `;
 
+    //삭제
     newReviewBox.querySelector(".delete-button").addEventListener("click", () => {
       const inputPassword = prompt("비밀번호를 입력하세요:");
       if (inputPassword === review.password) {
@@ -151,6 +176,7 @@ getMovieDetails().then(async (data) => {
       }
     });
 
+    //수정
     newReviewBox.querySelector(".edit-button").addEventListener("click", () => {
       const inputPassword = prompt("비밀번호를 입력하세요:");
       if (inputPassword === review.password) {

@@ -9,7 +9,7 @@ body {
   margin: 0px;
   padding: 20px;
 }
-.review-content{
+.review-content {
   background-color: white;
   width: 400px;
   text-align: left;
@@ -65,7 +65,7 @@ body {
   display: flex;
   align-items: flex-end;
 }
-.input_btn {
+.btn {
   border: 0px;
   width: 15%;
   height: 80px;
