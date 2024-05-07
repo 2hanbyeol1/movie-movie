@@ -301,15 +301,29 @@ strong {
 
 .image-container {
   display: flex;
-  overflow-x: scroll;
-  margin: 30px auto 30px;
+  overflow-x: auto;
+  margin: 50px auto 30px;
   max-width: 900px;
+  border-radius: 8px; /* Adjust border radius as needed */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Add a blurred shadow effect */
+}
+
+.image-container span {
+  font-size: 12px;
+  position: absolute;
+  z-index: 10;
+  background-color: rgb(255, 255, 255);
+  padding: 4px 8px;
+  opacity: 0.7;
+  border-radius: 20px;
+  margin: 8px;
 }
 
 .image-container::-webkit-scrollbar {
   width: 8px;
   height: 10px;
   background-color: rgb(64, 64, 64);
+  border-radius: 5px;
 }
 
 .image-container::-webkit-scrollbar-thumb {
@@ -318,12 +332,13 @@ strong {
 }
 
 .image-container img {
-  width: 300px;
+  width: 220px;
   margin-right: 10px;
 }
 
 .image-box {
   margin-right: 400px !important;
+  position: relative;
 }
 
 .modal {
