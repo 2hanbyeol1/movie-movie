@@ -45,7 +45,7 @@ getMovieDetails().then(async (data) => {
          <input type="password" class="pw" id="pw" placeholder="비밀번호를 입력해주세요." />
         </div>
       <div class="input">
-        <textarea type="text" class="text-box" placeholder="관람평을 입력해주세요." ></textarea><button class="but">입력</button>
+        <textarea type="text" class="text-box" placeholder="관람평을 입력해주세요." ></textarea><button class="btn">입력</button>
       </div>
       <p class="error">*아이디가 중복되었습니다.<p>
     </header>
@@ -97,7 +97,7 @@ getMovieDetails().then(async (data) => {
     reviewBox.appendChild(newReviewBox);
   });
 
-  document.querySelector(".but").addEventListener("click", () => {
+  document.querySelector(".btn").addEventListener("click", () => {
     const idValue = document.querySelector(".id").value;
     const passwordValue = document.querySelector(".pw").value;
     const reviewValue = document.querySelector(".text-box").value;
