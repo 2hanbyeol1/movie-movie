@@ -5,16 +5,16 @@ body {
   margin: 0px;
   background-color: rgb(39, 39, 39);
 }
+
+strong {
+  color: white;
+}
+/*뒤로 가기*/
 .logo {
   margin: 0px;
   padding: 20px;
 }
-.review-content{
-  background-color: white;
-  width: 400px;
-  text-align: left;
-  border-radius: 5px;
-}
+/*오른쪽 고정 리뷰 창*/
 .header {
   width: 400px;
   height: 100%;
@@ -24,6 +24,7 @@ body {
   color: #a826bc94;
   overflow: auto;
   right: 0px;
+  z-index: auto;
 }
 .text-box {
   font-size: 15px;
@@ -107,10 +108,123 @@ body {
   font-size: 40px;
   color: #a826bc94;
   margin-top: 50px;
+  text-shadow: 1px 1px 1px rgb(0, 0, 0);
 }
 #title-sub {
   font-size: 15px;
 }
+/*리뷰 입력 받는 창*/
+.review {
+  width: 100%;
+  height: 65%;
+  border-top: 5px solid #a826bc94;
+  border-bottom: 5px solid #a826bc94;
+  border-radius: 20px;
+  grid-template-columns: 1fr;
+  overflow-y: scroll;
+  font-size: 15px;
+  color: black;
+}
+.review::-webkit-scrollbar {
+  display: none;
+}
+.review-box {
+  background-color: white;
+  width: 100%;
+  height: 85px;
+  border-radius: 10px;
+  display: block;
+  align-items: center;
+  margin-top: 15px;
+}
+.review-text {
+  font-size: 15px;
+  width: 100%;
+  height: 70%;
+  display: flex;
+  align-items: center;
+  word-break: break-all;
+  padding-top: 0px;
+  padding-left: 5px;
+  overflow-y: scroll;
+}
+.review-text::-webkit-scrollbar {
+  display: none;
+}
+.user {
+  display: flex;
+  justify-content: space-between;
+}
+.user-id {
+  margin-left: 10px;
+  font-size: 13px;
+}
+.data-modify {
+  display: flex;
+}
+.modify {
+  color: #a826bc94;
+  background-color: transparent;
+  border: none;
+  font-size: 12px;
+  padding-right: 2px;
+}
+.delete {
+  color: rgb(255, 69, 69);
+  background-color: transparent;
+  border: none;
+  font-size: 12px;
+  margin-right: 5px;
+}
+/*리뷰 입력 창*/
+.info {
+  padding-top: 5px;
+  display: flex;
+  justify-content: space-around;
+  height: 40px;
+}
+.id {
+  width: 40%;
+  padding-left: 10px;
+  font-size: 12px;
+}
+.pw {
+  width: 40%;
+  padding-left: 10px;
+  font-size: 12px;
+}
+.input {
+  padding-top: 10px;
+  display: flex;
+  align-items: flex-end;
+}
+.btn {
+  border: 0px;
+  width: 15%;
+  height: 80px;
+  font-size: 15px;
+  color: white;
+  background-color: #a826bc94;
+  border-radius: 0px 10px 10px 0px;
+}
+.text-box {
+  width: 85%;
+  height: 80px;
+  background-color: rgb(255, 255, 255);
+  border: 0px;
+  border-radius: 10px 0px 0px 10px;
+  word-break: break-all;
+  resize: none;
+  padding-top: 10px;
+}
+.error {
+  color: rgb(255, 69, 69);
+  padding-left: 10px;
+  margin-top: 10px;
+  font-size: 13px;
+  letter-spacing: 2px;
+}
+/*상세 페이지 - 메인*/
 .main {
   display: flex;
   flex-direction: column;
@@ -123,27 +237,31 @@ body {
   display: flex;
   flex-direction: column;
   text-align: center;
-  line-height: 15px;
+  line-height: 10px;
   font-size: 25px;
   color: white;
   margin-top: 0px;
 }
 .year {
-  padding: 30px 0;
+  padding: 20px;
   display: block;
   font-size: 15px;
   color: rgb(160, 160, 160);
 }
+/*상세 페이지 - 이미지&트레일러*/
 .main-img {
   padding: 0px;
   display: flex;
   align-items: center;
+  margin-top: 15px;
 }
 .img {
   width: 300px;
   height: 400px;
   padding: 5px;
 }
+
+/*상세 페이지 - 영화 정보*/
 
 .data {
   width: 65%;
@@ -169,18 +287,26 @@ body {
   color: rgb(160, 160, 160);
   padding-top: 10px;
   border-top: 1px solid #adadad94;
+  line-height: 20px;
 }
 #text-title {
   color: white;
   margin: 5px 0px 5px 0px;
 }
-@media screen and (max-width: 1500px) {
+
+@media screen and (max-width: 1300px) {
+  .main-img {
+    width: 70%;
+    height: 70%;
+  }
+}
+@media screen and (max-width: 1000px) {
   .main-img {
     display: none;
   }
 }
 
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 700px) {
   .main {
     display: none;
   }
