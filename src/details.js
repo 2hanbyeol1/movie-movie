@@ -63,7 +63,7 @@ function handleClick(event) {
   modal.style.display = "block";
 }
 
-// 모달창 밖이나 사진이 클리되었을때 모달 닫기
+// 모달창 밖이나 사진이 클릭 되었을때 모달 닫기
 window.onclick = function (event) {
   if (event.target == modal) {
     modal.style.display = "none";
