@@ -55,7 +55,7 @@ getMovieDetails().then(async (data) => {
       <div class="input">
         <textarea type="text" class="text-box" placeholder="관람평을 입력해주세요." ></textarea><button class="btn">입력</button>
       </div>
-      <p class="error">*아이디가 중복되었습니다.<p>
+      <p class="error"><p>
     </header>
     <h1 class="logo">
       <a href="http://127.0.0.1:5500/index.html" title="웹 사이트로 뒤로가기" id="back">
