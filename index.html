@@ -27,18 +27,25 @@
         </div>
       </div>
       <div class="header-btn-group">
+        <button id="filter-btn">필터<img src="./assets/img/filter.png" /></button>
         <div class="sort-container">
           <select id="sort-btn" name="sort">
-            <option value="high-rated">평점 높은 순</option>
-            <option value="low-rated">평점 낮은 순</option>
-            <option value="recent">최신 순</option>
-            <option value="old">오래된 순</option>
+            <option id="high-rated" value="high-rated">평점 높은 순</option>
+            <option id="low-rated" value="low-rated">평점 낮은 순</option>
+            <option id="recent" value="recent">최신 순</option>
+            <option id="old" value="old">오래된 순</option>
           </select>
           <img src="./assets/img/sort.png" />
         </div>
         <button id="lang-btn" value="en-US">ENGLISH</button>
       </div>
     </header>
+    <div id="filter-list">
+      <div>
+        <h1 id="genre-title">장르</h1>
+        <ul id="genre-list"></ul>
+      </div>
+    </div>
     <main>
       <section>
         <ul id="movie-list"></ul>
