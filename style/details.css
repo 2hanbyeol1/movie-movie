@@ -265,8 +265,7 @@ strong {
   display: flex;
   overflow-x: hidden;
   margin: 50px auto 30px;
-  border-radius: 8px; /* Adjust border radius as needed */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Add a blurred shadow effect */
+  border-radius: 8px;
 }
 
 .image-container span {
