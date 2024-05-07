@@ -50,7 +50,6 @@ $sortBtn.addEventListener("change", (e) => {
 
 $langBtn.addEventListener("click", (e) => {
   changeLanguage({ language: e.target.value, page, sortMethod, selectedGenres });
-  sortBy(sortMethod);
   prevQuery = "";
 });
 
