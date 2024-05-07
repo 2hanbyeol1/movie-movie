@@ -14,12 +14,7 @@ strong {
   margin: 0px;
   padding: 20px;
 }
-.review-content {
-  background-color: white;
-  width: 400px;
-  text-align: left;
-  border-radius: 5px;
-}
+/*리뷰 고정 창*/
 .header {
   width: 400px;
   height: 100%;
@@ -35,14 +30,19 @@ strong {
   font-size: 15px;
   padding-left: 10px;
 }
-.review {
-  width: 100%;
-  height: 600px;
-  border-top: 5px solid #a826bc94;
-  border-bottom: 5px solid #a826bc94;
-  border-radius: 10px;
-  grid-template-columns: 1fr;
-  overflow-y: scroll;
+#title {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  line-height: 40px;
+  font-size: 50px;
+  color: #a826bc94;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  text-shadow: 1px 1px 1px rgb(0, 0, 0);
+}
+#title-sub {
+  font-size: 20px;
 }
 
 /* #boxs{
@@ -52,72 +52,6 @@ strong {
   background-color: #000000;;
 } */
 
-.review::-webkit-scrollbar {
-  display: none;
-}
-.review-box {
-  background-color: white;
-  width: 100%;
-  height: 85px;
-  border-radius: 10px;
-  margin-bottom: 12px;
-}
-.info {
-  padding-top: 5px;
-  display: flex;
-  justify-content: space-around;
-  height: 40px;
-}
-.id {
-  padding-left: 10px;
-}
-.pw {
-  padding-left: 10px;
-}
-.input {
-  padding-top: 10px;
-  display: flex;
-  align-items: flex-end;
-}
-.btn {
-  border: 0px;
-  width: 15%;
-  height: 80px;
-  font-size: 15px;
-  color: white;
-  background-color: #a826bc94;
-  border-radius: 0px 10px 10px 0px;
-}
-.text-box {
-  width: 85%;
-  height: 80px;
-  background-color: rgb(255, 255, 255);
-  border: 0px;
-  border-radius: 10px 0px 0px 10px;
-  word-break: break-all;
-  resize: none;
-  padding-top: 10px;
-}
-.error {
-  color: rgb(255, 69, 69);
-  padding-left: 10px;
-  margin-top: 10px;
-  font-size: 13px;
-  letter-spacing: 2px;
-}
-#title {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  line-height: 40px;
-  font-size: 40px;
-  color: #a826bc94;
-  margin-top: 50px;
-  text-shadow: 1px 1px 1px rgb(0, 0, 0);
-}
-#title-sub {
-  font-size: 15px;
-}
 /*리뷰 입력 받는 창*/
 .review {
   width: 100%;
@@ -130,51 +64,48 @@ strong {
   font-size: 15px;
   color: black;
 }
-.review::-webkit-scrollbar {
-  display: none;
-}
 .review-box {
   background-color: white;
   width: 100%;
   height: 85px;
   border-radius: 10px;
-  display: block;
-  align-items: center;
-  margin-top: 15px;
+  margin-top: 12px;
 }
-.review-text {
+.review-content {
   font-size: 15px;
   width: 100%;
   height: 70%;
-  display: flex;
-  align-items: center;
   word-break: break-all;
-  padding-top: 0px;
-  padding-left: 5px;
+  padding: 10px;
   overflow-y: scroll;
 }
-.review-text::-webkit-scrollbar {
+.review::-webkit-scrollbar {
+  display: none;
+}
+.review-content::-webkit-scrollbar {
   display: none;
 }
 .user {
   display: flex;
   justify-content: space-between;
+  border-top: 1px solid #a826bc94;
+  padding-top: 5px;
 }
 .user-id {
   margin-left: 10px;
   font-size: 13px;
 }
-.data-modify {
+.review-buttons {
   display: flex;
 }
-.modify {
+.edit-button {
   color: #a826bc94;
   background-color: transparent;
   border: none;
   font-size: 12px;
   padding-right: 2px;
 }
-.delete {
+.delete-button {
   color: rgb(255, 69, 69);
   background-color: transparent;
   border: none;
