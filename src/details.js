@@ -113,14 +113,16 @@ getMovieDetails().then(async (data) => {
         localStorage.setItem("userInfos", JSON.stringify(userInfos));
         // 카드 생성
         const cardHTML = `
-        <div class="card border-primary mb-3" style="max-width: 18rem;">
-          <div class="card-header">리뷰</div>
-          <div class="card-body text-primary">
+        <div id="boxs" class="card border-primary mb-3" style="max-width: 18rem;">
+           <div class="card-header">리뷰</div>
+           <div class="card-body text-primary">
             <h5 class="card-title">${userInfo.id}</h5>
             <p class="card-text">${userInfo.content}</p>
+          <div id="btns">
             <button type="button" class="btn btn-outline-primary delete-btn">삭제하기</button>
-            <button type="button" class="btn btn-outline-primary edit-btn" data-id="${userInfos.length - 1}" data-pass="${userInfo.pass}">수정하기</button>
+            <button type="button" class="btn btn-outline-primary edit-btn" data-id="${userInfos.length - 1}" data-pass="${userInfo.pass}">수정하기</button>       
           </div>
+
         </div>
       `;
         review.innerHTML += cardHTML;
@@ -152,10 +154,10 @@ getMovieDetails().then(async (data) => {
           const userInfo = userInfos.find(info => info.id === cardTitle);
 
           // 사용자 id와 입력된 비밀번호 동시비교
-          if (userInfo.id && userInput === userInfo.pass) {  
+          if (userInfo.id && userInput === userInfo.pass) {
             // 사용자 아이디를 삭제하고 로컬 스토리지 업데이트
             // (첫번째 매개변수는 삭제를 시작할 인덱스, 두번째 매개변수는 삭제할 요수 수 즉 1을 사용하여 해당 정보만 삭제)
-            userInfos.splice(userInfos.indexOf(userInfo), 1); 
+            userInfos.splice(userInfos.indexOf(userInfo), 1);
             // 로컬 스토리지 업데이트
             localStorage.setItem("userInfos", JSON.stringify(userInfos));
             // 카드 삭제
@@ -166,7 +168,7 @@ getMovieDetails().then(async (data) => {
             // 데이터 체크 용도로 넣은것 굳이 필요없음
             console.log(userInfos);
           } else {
-            console.log('input_pass:' +userInput);
+            console.log('input_pass:' + userInput);
             alert("비밀번호가 다릅니다.");
           }
         }

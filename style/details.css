@@ -38,6 +38,14 @@ body {
   grid-template-columns: 1fr;
   overflow-y: scroll;
 }
+
+/* #boxs{
+  background-color: white;
+}
+#btns{
+  background-color: #000000;;
+} */
+
 .review::-webkit-scrollbar {
   display: none;
 }

@@ -217,7 +217,7 @@ main {
   top: 0;
   left: 0;
   color: white;
-  background-color: #00000000;
+  background-color: #a00d0d00;
   opacity: 0;
   transition: 0.2s;
 }
@@ -230,6 +230,7 @@ main {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  background-color: green;
 }
 
 .card-overview {
@@ -277,6 +278,7 @@ main {
 #scroll-top-btn:hover {
   animation: motion 0.7s linear 0s infinite;
 }
+
 
 @keyframes motion {
   0% {
