@@ -89,33 +89,56 @@ getMovieDetails().then(async (data) => {
         </div>
         `;
 
+  const savedReviews = JSON.parse(localStorage.getItem("reviews")) || [];
+  const reviewBox = document.querySelector(".review");
+
+  savedReviews.forEach((review) => {
+    const newReviewBox = createReviewBox(review);
+    reviewBox.appendChild(newReviewBox);
+  });
+
   document.querySelector(".but").addEventListener("click", () => {
     const idValue = document.querySelector(".id").value;
     const passwordValue = document.querySelector(".pw").value;
     const reviewValue = document.querySelector(".text-box").value;
-    const reviewBox = document.querySelector(".review");
 
+    const newReview = {
+      id: idValue,
+      password: passwordValue,
+      review: reviewValue
+    };
+
+    savedReviews.push(newReview);
+
+    localStorage.setItem("reviews", JSON.stringify(savedReviews));
+
+    const newReviewBox = createReviewBox(newReview);
+    reviewBox.prepend(newReviewBox);
+  });
+
+  function createReviewBox(review) {
     const newReviewBox = document.createElement("div");
     newReviewBox.classList.add("review-box");
-
-    //css 사용해서 우측 으로 이동!!!
     newReviewBox.innerHTML = `
-              <div class="review-content">
-                  <p>ID: ${idValue}</p>
-                  <p> ${reviewValue}</p>
-              </div>
-              <div class="review-buttons">
-                  <button class="delete-button">삭제</button>
-                  <button class="edit-button">수정</button>
-              </div>
+            <div class="review-content">
+              <p>ID: ${review.id}</p>
+              <p>${review.review}</p>
+            </div>
+            <div class="review-buttons">
+              <button class="delete-button">삭제</button>
+              <button class="edit-button">수정</button>
+            </div>
           `;
-
-    reviewBox.prepend(newReviewBox);
 
     newReviewBox.querySelector(".delete-button").addEventListener("click", () => {
       const inputPassword = prompt("비밀번호를 입력하세요:");
-      if (inputPassword === passwordValue) {
+      if (inputPassword === review.password) {
+        const index = savedReviews.indexOf(review);
+        savedReviews.splice(index, 1);
+
         newReviewBox.remove();
+
+        localStorage.setItem("reviews", JSON.stringify(savedReviews));
       } else {
         alert("비밀번호가 일치하지 않습니다.");
       }
@@ -123,16 +146,21 @@ getMovieDetails().then(async (data) => {
 
     newReviewBox.querySelector(".edit-button").addEventListener("click", () => {
       const inputPassword = prompt("비밀번호를 입력하세요:");
-      if (inputPassword == passwordValue) {
+      if (inputPassword === review.password) {
         const reviewContent = newReviewBox.querySelector(".review-content");
         const reviewText = reviewContent.querySelector("p:last-child");
         const newText = prompt("리뷰를 수정하세요:", reviewText.textContent);
         if (newText !== null) {
           reviewText.textContent = newText;
+
+          review.review = newText;
+          localStorage.setItem("reviews", JSON.stringify(savedReviews));
         }
       } else {
         alert("비밀번호가 일치하지 않습니다.");
       }
     });
-  });
+
+    return newReviewBox;
+  }
 });
