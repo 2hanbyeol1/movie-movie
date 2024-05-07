@@ -71,6 +71,7 @@ getMovieDetails().then(async (data) => {
             encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
         </iframe>
 
+
         </form>
         <div class="data">
         <p class="name">
@@ -130,6 +131,7 @@ getMovieDetails().then(async (data) => {
             </div>
           `;
 
+    //삭제
     newReviewBox.querySelector(".delete-button").addEventListener("click", () => {
       const inputPassword = prompt("비밀번호를 입력하세요:");
       if (inputPassword === review.password) {
@@ -144,6 +146,7 @@ getMovieDetails().then(async (data) => {
       }
     });
 
+    //수정
     newReviewBox.querySelector(".edit-button").addEventListener("click", () => {
       const inputPassword = prompt("비밀번호를 입력하세요:");
       if (inputPassword === review.password) {
