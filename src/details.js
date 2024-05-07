@@ -42,9 +42,12 @@ getMovieDetails().then(async (data) => {
       <div class="review">
         <div class="review-box" >
           <p class="review-text"> 댓글 입력 받는 창 넘어갈 시 스크롤 사용<p>
-          <div class="data-modify"> 
-            <button class="modify">수정</button>
-            <button class="delete">삭제</button>
+          <div class="user">
+           <p class="user-id">id</p>
+            <div class="data-modify"> 
+              <button class="modify">수정</button>
+              <button class="delete">삭제</button>
+            </div>
           </div>
         </div>
       </div>
