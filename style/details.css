@@ -204,20 +204,6 @@ strong {
   color: white;
   margin: 5px 0px 5px 0px;
 }
-/*상세 페이지 - 스 틸 컷*/
-.photo-g {
-  width: 100%;
-  overflow: hidden;
-  white-space: nowrap;
-}
-.photo {
-  width: 300px;
-  height: 400px;
-  margin: 80px 10px 20px 30px;
-  list-style: none;
-  display: inline-block;
-  background-color: green;
-}
 @media screen and (max-width: 1500px) {
   .main-img {
     display: none;

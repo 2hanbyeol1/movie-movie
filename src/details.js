@@ -91,17 +91,6 @@ getMovieDetails().then(async (data) => {
             ${data.overview}
         </div>
       </div>
-
-      <div class="photo-g" >
-        <li class="photo">
-        <li class="photo">
-        <li class="photo">
-        <li class="photo">
-        <li class="photo">
-        <li class="photo">
-        <li class="photo">
-        <li class="photo">
-      </div>
     </div>
     
   `;
