@@ -1,5 +1,11 @@
 import { getMovieCredits, getMovieDetails, getMovieImages, getMovieTrailer } from "./api.js";
 
+// 영화 ID 가져오기
+const getMovieID = async () => {
+  const result = await getMovieDetails();
+  return result.id;
+};
+
 // 감독 이름 가져오기
 const getDirector = async () => {
   const result = await getMovieCredits();
@@ -31,6 +37,7 @@ const getMovieKey = async () => {
 
 // 영화 전반적인 데이터 가져와서 detils.html 로 붙이는 문자열로 가공
 getMovieDetails().then(async (data) => {
+  const movieID = await getMovieID();
   const movieKey = await getMovieKey();
   const director = await getDirector();
   const casts = await getCasts();
@@ -94,8 +101,11 @@ getMovieDetails().then(async (data) => {
   const reviewBox = document.querySelector(".review");
 
   savedReviews.forEach((review) => {
-    const newReviewBox = createReviewBox(review);
-    reviewBox.appendChild(newReviewBox);
+    // 리뷰를 추가할 때 해당 영화 ID와 저장된 리뷰의 영화 ID를 비교하여 일치할 경우에만 추가
+    if (review.movieID === movieID) {
+      const newReviewBox = createReviewBox(review);
+      reviewBox.appendChild(newReviewBox);
+    }
   });
 
   document.querySelector(".btn").addEventListener("click", () => {
@@ -104,17 +114,22 @@ getMovieDetails().then(async (data) => {
     const reviewValue = document.querySelector(".text-box").value;
 
     const newReview = {
+      movieID: movieID, // 영화의 ID를 추가하여 저장
       id: idValue,
       password: passwordValue,
       review: reviewValue
     };
 
+    // 해당 영화의 리뷰만 저장
     savedReviews.push(newReview);
 
     localStorage.setItem("reviews", JSON.stringify(savedReviews));
 
-    const newReviewBox = createReviewBox(newReview);
-    reviewBox.prepend(newReviewBox);
+    // 해당 영화의 리뷰만 추가
+    if (newReview.movieID === movieID) {
+      const newReviewBox = createReviewBox(newReview);
+      reviewBox.prepend(newReviewBox);
+    }
   });
 
   function createReviewBox(review) {
