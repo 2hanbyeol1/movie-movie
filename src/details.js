@@ -108,7 +108,7 @@ getMovieDetails().then(async (data) => {
   await getStillCuts();
   const main = document.querySelector(".movie-info");
   main.innerHTML = `
-      <div id="background" style="background-image: url(https://image.tmdb.org/t/p/w500/${data.poster_path})"></div>
+      <div id="background" style="background-image: url(https://image.tmdb.org/t/p/original/${data.poster_path})"></div>
       <div class="title">
           <div class="movie-title">
             <h1 class="year">Movie <em>|</em> 리뷰 & 정보</h1>
