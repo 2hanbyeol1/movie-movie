@@ -14,7 +14,12 @@ strong {
   margin: 0px;
   padding: 20px;
 }
-/*오른쪽 고정 리뷰 창*/
+.review-content {
+  background-color: white;
+  width: 400px;
+  text-align: left;
+  border-radius: 5px;
+}
 .header {
   width: 400px;
   height: 100%;
@@ -74,7 +79,7 @@ strong {
   display: flex;
   align-items: flex-end;
 }
-.input_btn {
+.btn {
   border: 0px;
   width: 15%;
   height: 80px;
