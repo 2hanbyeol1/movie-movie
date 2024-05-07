@@ -1,6 +1,15 @@
 // index
 export const $header = document.querySelector("header");
-export const $langBtn = document.querySelector("#header-lang-btn");
+export const $filterBtn = document.querySelector("#filter-btn");
+export const $filterList = document.querySelector("#filter-list");
+export const $genreTitle = document.querySelector("#genre-title");
+export const $genreList = document.querySelector("#genre-list");
+export const $highRated = document.querySelector("#high-rated");
+export const $lowRated = document.querySelector("#low-rated");
+export const $recent = document.querySelector("#recent");
+export const $old = document.querySelector("#old");
+export const $sortBtn = document.querySelector("#sort-btn");
+export const $langBtn = document.querySelector("#lang-btn");
 export const $searchForm = document.querySelector("#search-form");
 export const $searchInput = document.querySelector("#search-input");
 export const $warningIcon = document.querySelector("#warning-icon");

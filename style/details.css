@@ -5,6 +5,7 @@ body {
   margin: 0px;
   background-color: rgb(39, 39, 39);
 }
+
 strong {
   color: white;
 }
@@ -12,6 +13,7 @@ strong {
 .logo {
   margin: 0px;
   padding: 20px;
+
 }
 /*오른쪽 고정 리뷰 창*/
 .header {
@@ -24,6 +26,80 @@ strong {
   overflow: auto;
   right: 0px;
   z-index: auto;
+}
+.text-box {
+  font-size: 15px;
+  padding-left: 10px;
+}
+.review {
+  width: 100%;
+  height: 600px;
+  border-top: 5px solid #a826bc94;
+  border-bottom: 5px solid #a826bc94;
+  border-radius: 10px;
+  grid-template-columns: 1fr;
+  overflow-y: scroll;
+}
+
+/* #boxs{
+  background-color: white;
+}
+#btns{
+  background-color: #000000;;
+} */
+
+.review::-webkit-scrollbar {
+  display: none;
+}
+.review-box {
+  background-color: white;
+  width: 100%;
+  height: 85px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
+.info {
+  padding-top: 5px;
+  display: flex;
+  justify-content: space-around;
+  height: 40px;
+}
+.id {
+  padding-left: 10px;
+}
+.pw {
+  padding-left: 10px;
+}
+.input {
+  padding-top: 10px;
+  display: flex;
+  align-items: flex-end;
+}
+.input_btn {
+  border: 0px;
+  width: 15%;
+  height: 80px;
+  font-size: 15px;
+  color: white;
+  background-color: #a826bc94;
+  border-radius: 0px 10px 10px 0px;
+}
+.text-box {
+  width: 85%;
+  height: 80px;
+  background-color: rgb(255, 255, 255);
+  border: 0px;
+  border-radius: 10px 0px 0px 10px;
+  word-break: break-all;
+  resize: none;
+  padding-top: 10px;
+}
+.error {
+  color: rgb(255, 69, 69);
+  padding-left: 10px;
+  margin-top: 10px;
+  font-size: 13px;
+  letter-spacing: 2px;
 }
 #title {
   display: flex;
@@ -185,7 +261,9 @@ strong {
   height: 400px;
   padding: 5px;
 }
+
 /*상세 페이지 - 영화 정보*/
+
 .data {
   width: 65%;
   float: left;
@@ -216,6 +294,7 @@ strong {
   color: white;
   margin: 5px 0px 5px 0px;
 }
+
 /*상세 페이지 - 스 틸 컷*/
 .photo-g {
   width: 100%;
@@ -242,6 +321,7 @@ strong {
     display: none;
   }
 }
+
 @media screen and (max-width: 700px) {
   .main {
     display: none;

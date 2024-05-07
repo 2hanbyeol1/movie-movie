@@ -1,5 +1,8 @@
 import {
+  $filterBtn,
+  $sortBtn,
   $langBtn,
+  $filterList,
   $searchForm,
   $searchInput,
   $warningIcon,
@@ -12,15 +15,20 @@ import { searchMovieByQuery } from "./feature/search.js";
 import { changeLanguage } from "./feature/language.js";
 import { hideHeaderOnScrollDown, hideScrollTopButtonOnTop, scrollToTop } from "./feature/event.js";
 import { checkStringLength } from "./feature/validation.js";
+import { addGenreBtns } from "./feature/genre.js";
+import { sortBy } from "./feature/sort.js";
 
 // 상태
 let language = "ko-KR"; // en-US
 let page = 1;
 let prevQuery = "";
 let prevScrollTop = 0;
+let sortMethod = "high-rated";
+const selectedGenres = new Set();
 
 // 로드 시 실행
-get20Movies({ language, page });
+get20Movies({ language, page, sortMethod, selectedGenres });
+addGenreBtns(selectedGenres);
 
 document.addEventListener("scroll", () => {
   const nextScrollTop = window.scrollY || 0;
@@ -30,8 +38,18 @@ document.addEventListener("scroll", () => {
   hideScrollTopButtonOnTop();
 });
 
+$filterBtn.addEventListener("click", (e) => {
+  e.target.classList.toggle("active");
+  $filterList.classList.toggle("active");
+});
+
+$sortBtn.addEventListener("change", (e) => {
+  sortMethod = e.target.value;
+  sortBy(sortMethod);
+});
+
 $langBtn.addEventListener("click", (e) => {
-  changeLanguage({ language: e.target.value, page });
+  changeLanguage({ language: e.target.value, page, sortMethod, selectedGenres });
   prevQuery = "";
 });
 
