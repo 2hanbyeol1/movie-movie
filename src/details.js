@@ -1,5 +1,5 @@
 import { getMovieCredits, getMovieDetails, getMovieImages, getMovieTrailer } from "./api.js";
-
+import { badword } from "../src.constants.js";
 // 감독 이름 가져오기
 const getDirector = async () => {
   const result = await getMovieCredits();
@@ -102,6 +102,12 @@ getMovieDetails().then(async (data) => {
     const passwordValue = document.querySelector(".pw").value;
     const reviewValue = document.querySelector(".text-box").value;
 
+    for (let i = 0; i < badword.length; i++) {
+      if (reviewValue.value.includes(badword[i])) {
+        alert("비속어가 포함 되어 있습니다.");
+        return;
+      }
+    }
     const newReview = {
       id: idValue,
       password: passwordValue,
