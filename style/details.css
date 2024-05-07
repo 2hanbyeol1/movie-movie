@@ -1,207 +1,154 @@
 * {
   box-sizing: border-box;
 }
-body {
-  margin: 0px;
-  background-color: rgb(39, 39, 39);
+
+.movieDetailsSection {
+  height: 100%;
 }
 
 strong {
   color: white;
 }
-/*뒤로 가기*/
-.logo {
-  margin: 0px;
-  padding: 20px;
-}
-.review-content {
-  background-color: white;
-  width: 400px;
-  text-align: left;
-  border-radius: 5px;
-}
-.header {
-  width: 400px;
-  height: 100%;
-  list-style-type: none;
+
+/* 뒤로 가기 */
+#back {
   position: fixed;
-  border-left: 10px solid #a826bc94;
-  color: #a826bc94;
-  overflow: auto;
-  right: 0px;
-  z-index: auto;
-}
-.text-box {
-  font-size: 15px;
-  padding-left: 10px;
-}
-.review {
-  width: 100%;
-  height: 600px;
-  border-top: 5px solid #a826bc94;
-  border-bottom: 5px solid #a826bc94;
-  border-radius: 10px;
-  grid-template-columns: 1fr;
-  overflow-y: scroll;
+  padding: 15px;
+  z-index: 1;
 }
 
-/* #boxs{
-  background-color: white;
-}
-#btns{
-  background-color: #000000;;
-} */
-
-.review::-webkit-scrollbar {
-  display: none;
-}
-.review-box {
-  background-color: white;
-  width: 100%;
-  height: 85px;
-  border-radius: 10px;
-  margin-bottom: 12px;
-}
-.info {
-  padding-top: 5px;
-  display: flex;
-  justify-content: space-around;
-  height: 40px;
-}
-.id {
-  padding-left: 10px;
-}
-.pw {
-  padding-left: 10px;
-}
-.input {
-  padding-top: 10px;
-  display: flex;
-  align-items: flex-end;
-}
-.btn {
-  border: 0px;
-  width: 15%;
-  height: 80px;
-  font-size: 15px;
-  color: white;
-  background-color: #a826bc94;
-  border-radius: 0px 10px 10px 0px;
-}
-.text-box {
-  width: 85%;
-  height: 80px;
-  background-color: rgb(255, 255, 255);
-  border: 0px;
-  border-radius: 10px 0px 0px 10px;
-  word-break: break-all;
-  resize: none;
-  padding-top: 10px;
-}
-.error {
-  color: rgb(255, 69, 69);
-  padding-left: 10px;
-  margin-top: 10px;
-  font-size: 13px;
-  letter-spacing: 2px;
-}
-#title {
+/*리뷰 고정 창*/
+.review-container {
   display: flex;
   flex-direction: column;
-  text-align: center;
-  line-height: 40px;
-  font-size: 40px;
-  color: #a826bc94;
-  margin-top: 50px;
-  text-shadow: 1px 1px 1px rgb(0, 0, 0);
+  align-items: center;
+  justify-content: space-between;
+  width: 400px;
+  height: 100%;
+  padding: 1.3rem;
+  list-style-type: none;
+  position: fixed;
+  border-left: 1px solid #212121;
+  box-shadow: 0px 0px 30px #2a2a2a;
+  overflow: auto;
+  right: 0;
 }
-#title-sub {
-  font-size: 15px;
-}
-/*리뷰 입력 받는 창*/
-.review {
+.review-above {
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  height: 65%;
-  border-top: 5px solid #a826bc94;
-  border-bottom: 5px solid #a826bc94;
-  border-radius: 20px;
-  grid-template-columns: 1fr;
+}
+.text-box {
+  font-size: 15px;
+  padding-left: 10px;
+}
+#background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.13;
+  z-index: -1;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+#title {
+  font-size: 1.2rem;
+  color: white;
+  margin: 25px 0;
+}
+
+/*리뷰 입력 받는 창*/
+.reviews {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  height: 62vh;
   overflow-y: scroll;
   font-size: 15px;
   color: black;
-}
-.review::-webkit-scrollbar {
-  display: none;
+  margin-top: 1rem;
 }
 .review-box {
-  background-color: white;
-  width: 100%;
-  height: 85px;
-  border-radius: 10px;
-  display: block;
-  align-items: center;
-  margin-top: 15px;
-}
-.review-text {
-  font-size: 15px;
-  width: 100%;
-  height: 70%;
   display: flex;
-  align-items: center;
-  word-break: break-all;
-  padding-top: 0px;
-  padding-left: 5px;
-  overflow-y: scroll;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #ffffff22;
+  width: 100%;
+  max-height: 85px;
+  border-radius: 5px;
+  padding: 0.5rem;
 }
-.review-text::-webkit-scrollbar {
+.review-id {
+  font-size: 0.8rem;
+  color: white;
+  margin-left: 0.5rem;
+  margin-bottom: 5px;
+}
+.review-content {
+  font-size: 0.9rem;
+  width: 100%;
+  height: 75%;
+  word-break: break-all;
+  overflow: scroll;
+  color: #9e9e9e;
+}
+.reviews::-webkit-scrollbar {
   display: none;
 }
-.user {
+.review-content::-webkit-scrollbar {
+  display: none;
+}
+.review-buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 3px;
+}
+.edit-button {
+  color: rgba(255, 255, 255, 0.581);
+}
+.delete-button {
+  color: rgb(255 145 145 / 85%);
+}
+.edit-button,
+.delete-button {
+  background-color: transparent;
+  border: none;
+  font-size: 12px;
+}
+
+/* 리뷰 입력 창 */
+.info {
   display: flex;
   justify-content: space-between;
-}
-.user-id {
-  margin-left: 10px;
-  font-size: 13px;
-}
-.data-modify {
-  display: flex;
-}
-.modify {
-  color: #a826bc94;
-  background-color: transparent;
-  border: none;
-  font-size: 12px;
-  padding-right: 2px;
-}
-.delete {
-  color: rgb(255, 69, 69);
-  background-color: transparent;
-  border: none;
-  font-size: 12px;
-  margin-right: 5px;
-}
-/*리뷰 입력 창*/
-.info {
-  padding-top: 5px;
-  display: flex;
-  justify-content: space-around;
   height: 40px;
+  width: 100%;
+  margin-bottom: 3px;
 }
-.id {
-  width: 40%;
-  padding-left: 10px;
-  font-size: 12px;
+.info input,
+.content textarea {
+  color: #b0b0b0;
+  background: transparent;
+  border: 1px solid #373737;
 }
+.id,
 .pw {
-  width: 40%;
+  width: 48%;
   padding-left: 10px;
   font-size: 12px;
+  border-radius: 5px;
 }
 .input {
-  padding-top: 10px;
+  width: 100%;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
+  flex-direction: column;
+}
+.content {
+  width: 100%;
+  display: flex;
 }
 .btn {
   border: 0px;
@@ -217,43 +164,55 @@ strong {
   height: 80px;
   background-color: rgb(255, 255, 255);
   border: 0px;
-  border-radius: 10px 0px 0px 10px;
+  border-radius: 5px 0px 0px 5px;
   word-break: break-all;
   resize: none;
   padding-top: 10px;
+  font-size: 12px;
 }
-.error {
-  color: rgb(255, 69, 69);
-  padding-left: 10px;
-  margin-top: 10px;
-  font-size: 13px;
-  letter-spacing: 2px;
-}
-/*상세 페이지 - 메인*/
+
+/* 상세 페이지 - 메인 */
 .main {
+  padding: 10px 0;
+  margin-right: 400px !important;
+  position: relative;
+  min-height: 100%;
+}
+.movie-info {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-right: 400px !important;
-  z-index: auto;
+}
+.background {
+  content: "";
+  /* background: url(https://cdn.pixabay.com/photo/2020/06/28/00/04/chicago-5347435_960_720.jpg); */
+  background-size: cover;
+  opacity: 0.2;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-repeat: no-repeat;
 }
 
 .title {
   display: flex;
   flex-direction: column;
   text-align: center;
-  line-height: 10px;
   font-size: 25px;
   color: white;
   margin-top: 0px;
 }
 .year {
-  padding: 20px;
+  padding: 20px 0 10px;
   display: block;
   font-size: 15px;
   color: rgb(160, 160, 160);
 }
-/*상세 페이지 - 이미지&트레일러*/
+
+/* 상세 페이지 - 이미지&트레일러 */
 .main-img {
   padding: 0px;
   display: flex;
@@ -266,8 +225,7 @@ strong {
   padding: 5px;
 }
 
-/*상세 페이지 - 영화 정보*/
-
+/* 상세 페이지 - 영화 정보 */
 .data {
   width: 65%;
   float: left;
@@ -278,14 +236,17 @@ strong {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  margin: 5px 0px 5px 0px;
+  padding: 13px 0px;
 }
 .number {
   word-break: break-all;
   color: rgb(160, 160, 160);
   border-top: 1px solid #adadad94;
-  padding-top: 10px;
-  margin: 10px 0px 15px 0px;
+  padding: 13px 0px;
+}
+.name strong,
+.number strong {
+  margin-right: 2px;
 }
 .text {
   word-break: break-all;
@@ -300,10 +261,10 @@ strong {
 }
 
 .image-container {
+  width: 65%;
   display: flex;
-  overflow-x: auto;
+  overflow-x: hidden;
   margin: 50px auto 30px;
-  max-width: 900px;
   border-radius: 8px; /* Adjust border radius as needed */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Add a blurred shadow effect */
 }
@@ -319,25 +280,12 @@ strong {
   margin: 8px;
 }
 
-.image-container::-webkit-scrollbar {
-  width: 8px;
-  height: 10px;
-  background-color: rgb(64, 64, 64);
-  border-radius: 5px;
-}
-
-.image-container::-webkit-scrollbar-thumb {
-  background: rgb(91, 91, 91);
-  border-radius: 5px;
-}
-
 .image-container img {
   width: 220px;
   margin-right: 10px;
 }
 
 .image-box {
-  margin-right: 400px !important;
   position: relative;
 }
 
