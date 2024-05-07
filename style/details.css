@@ -301,9 +301,9 @@ strong {
 
 .image-container {
   display: flex;
-  overflow-x: auto;
-  margin: 70px auto 0px;
-  max-width: 1100px;
+  overflow-x: scroll;
+  margin: 30px auto 30px;
+  max-width: 900px;
 }
 
 .image-container::-webkit-scrollbar {
