@@ -1,5 +1,5 @@
 import { getMovieCredits, getMovieDetails, getMovieImages, getMovieTrailer } from "./api.js";
-import badword from "./constants/badword.js";
+import { validateId, validatePassword, validateReview } from "./feature/validation.js";
 
 // 영화 ID 가져오기
 const getMovieID = async () => {
@@ -84,14 +84,14 @@ const autoScroll = () => {
   }
 };
 
-// 오토스코롤이 기본값으로 적용
+// 오토스크롤이 기본값으로 적용
 let scrollInterval = setInterval(autoScroll, 40);
-// 마우스커서가 컨네이너 영역안으로 들어오면 오토스크롤링 멈추기
+// 마우스 커서가 컨네이너 영역안으로 들어오면 오토스크롤링 멈추기
 container.addEventListener("mouseenter", () => {
   clearInterval(scrollInterval);
 });
 
-// 마우스커서가 컨테이너 밖으로 떠나면 다시 스크롤 재개
+// 마우스 커서가 컨테이너 밖으로 떠나면 다시 스크롤 재개
 container.addEventListener("mouseleave", () => {
   // 인터벌을 클리어 해서 다수의 인터벌이 쌓여서 같이 돌아가게 하는것 (스크롤링 속도가 빨라지는것을 방지)
   clearInterval(scrollInterval);
@@ -140,12 +140,11 @@ getMovieDetails().then(async (data) => {
       </div>
     `;
 
-  let count = 0;
   const savedReviews = JSON.parse(localStorage.getItem("reviews")) || [];
   const reviewBox = document.querySelector(".reviews");
   const notFound = document.querySelector("#not-found");
 
-  count = savedReviews.reduce((cnt, review) => {
+  let count = savedReviews.reduce((cnt, review) => {
     // 리뷰를 추가할 때 해당 영화 ID와 저장된 리뷰의 영화 ID를 비교하여 일치할 경우에만 추가
     if (review.movieID === movieID) {
       const newReviewBox = createReviewBox(review);
@@ -162,19 +161,9 @@ getMovieDetails().then(async (data) => {
     const passwordValue = document.querySelector(".pw").value;
     const reviewValue = document.querySelector(".text-box").value;
 
-    for (let i = 0; i < savedReviews.length; i++) {
-      if (idValue === savedReviews[i].id) {
-        alert("중복된 ID입니다.");
-        return;
-      }
-    }
-
-    for (let i = 0; i < badword.length; i++) {
-      if (reviewValue.includes(badword[i])) {
-        alert("비속어가 포함 되어 있습니다.");
-        return;
-      }
-    }
+    if (!validateId(idValue, savedReviews)) return;
+    if (!validatePassword(passwordValue)) return;
+    if (!validateReview(reviewValue)) return;
 
     const newReview = {
       movieID: movieID, // 영화의 ID를 추가하여 저장
@@ -193,6 +182,7 @@ getMovieDetails().then(async (data) => {
       reviewBox.prepend(newReviewBox);
     }
 
+    count += 1;
     if (count !== 0) notFound.style.display = "none";
   });
 
@@ -222,6 +212,7 @@ getMovieDetails().then(async (data) => {
         savedReviews.splice(index, 1);
         newReviewBox.remove();
         localStorage.setItem("reviews", JSON.stringify(savedReviews));
+        count -= 1;
         if (count === 0) notFound.style.display = "block";
       } else {
         alert("비밀번호가 일치하지 않습니다.");
