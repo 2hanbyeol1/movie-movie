@@ -1,48 +1,8 @@
-@font-face {
-  font-family: "Pretendard-Regular";
-  src: url("../assets/font/Pretendard-Regular.subset.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-}
-
-* {
-  font-family: "Pretendard-Regular" !important;
-}
-
-html,
-body {
-  height: 100%;
-}
-
-body {
-  background-color: black;
-}
-
-body::-webkit-scrollbar {
-  width: 2px;
-}
-
-body::-webkit-scrollbar-thumb {
-  background-color: #4b4b4b;
-  border-radius: 10px;
-}
-
-button {
-  border: 0;
-  cursor: pointer;
-}
-
-input,
-textarea {
-  outline: none;
-  border: 0;
-}
-
-/* reset.css */
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
 */
+
 html,
 body,
 div,
@@ -160,7 +120,7 @@ blockquote:before,
 blockquote:after,
 q:before,
 q:after {
-  content: "";
+  content: '';
   content: none;
 }
 table {
