@@ -179,6 +179,7 @@ header.scrollDown {
   right: 0;
   color: white;
   transform: translateY(0.2rem);
+  z-index: 1;
 }
 
 #search-warning-msg::after {
