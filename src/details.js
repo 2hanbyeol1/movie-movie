@@ -1,52 +1,6 @@
 import { getMovieCredits, getMovieDetails, getMovieImages, getMovieTrailer } from "./api.js";
 import { validateId, validatePassword, validateReview } from "./feature/validation.js";
 
-// 영화 ID 가져오기
-const getMovieID = async () => {
-  const result = await getMovieDetails();
-  return result.id;
-};
-
-// 감독 이름 가져오기
-const getDirector = async () => {
-  const result = await getMovieCredits();
-  return result.crew.find((item) => item.job === "Director").name;
-};
-
-// 출연진 가져오기
-const getCasts = async () => {
-  const result = await getMovieCredits();
-  const castsList = result.cast.slice(0, 5);
-  const nameList = castsList.map((data) => data.name).join(", ");
-  return nameList;
-};
-
-// 장르 가져오기
-const getGenre = async () => {
-  const result = await getMovieDetails();
-  const genreList = result.genres;
-  const genres = genreList.map((data) => data.name).join(", ");
-  return genres;
-};
-
-// 무비키가 트레일러를 불러오기전에 항상 먼저 확보되어야 에러가 안남
-// 데이터에서 트레일러들이 type: trailer 로 구분되어 있는데 트레일러가 여러개 있는 영화들이 많아서 그냥 리스트에서 제일 첫 트레일러를 가져오게 코딩함
-const getMovieKey = async () => {
-  const result = await getMovieTrailer();
-  return result.results.filter((item) => item.type.includes("Trailer"))[0].key;
-};
-
-const getStillCuts = async () => {
-  const result = await getMovieImages();
-  const stillCuts = result.backdrops;
-  const imgBox = document.getElementById("imageContainer");
-  stillCuts.forEach((image) => {
-    const img = document.createElement("img");
-    img.src = `https://media.themoviedb.org/t/p/w1280${image.file_path}`;
-    imgBox.appendChild(img);
-  });
-};
-
 // 모달창과 모달안의 이미지 지정
 const modal = document.getElementById("imageModal");
 const modalImg = document.getElementById("modalImg");
@@ -101,12 +55,27 @@ container.addEventListener("mouseleave", () => {
 
 // 영화 전반적인 데이터 가져와서 details.html 로 붙이는 문자열로 가공
 getMovieDetails().then(async (data) => {
-  const movieID = await getMovieID();
-  const movieKey = await getMovieKey();
-  const director = await getDirector();
-  const casts = await getCasts();
-  const genres = await getGenre();
-  await getStillCuts();
+  const details = await getMovieDetails();
+  const credits = await getMovieCredits();
+  const trailer = await getMovieTrailer();
+  const images = await getMovieImages();
+  const movieID = details.id;
+  const movieKey = trailer.results.filter((item) => item.type.includes("Trailer"))[0].key;
+  const director = credits.crew.find((item) => item.job === "Director").name;
+  const casts = credits.cast
+    .slice(0, 5)
+    .map((data) => data.name)
+    .join(", ");
+  const genres = details.genres.map((data) => data.name).join(", ");
+
+  const stillCuts = images.backdrops;
+  const imgBox = document.getElementById("imageContainer");
+  stillCuts.forEach((image) => {
+    const img = document.createElement("img");
+    img.src = `https://media.themoviedb.org/t/p/w1280${image.file_path}`;
+    imgBox.appendChild(img);
+  });
+
   const main = document.querySelector(".movie-info");
   main.innerHTML = `
       <div id="background" style="background-image: url(https://image.tmdb.org/t/p/original/${data.poster_path})"></div>
