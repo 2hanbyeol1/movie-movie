@@ -130,9 +130,16 @@ getMovieDetails().then(async (data) => {
     const passwordValue = document.querySelector(".pw").value;
     const reviewValue = document.querySelector(".text-box").value;
 
-    if (!validateId(idValue, savedReviews)) return;
+    if (!validateId(idValue)) return;
     if (!validatePassword(passwordValue)) return;
     if (!validateReview(reviewValue)) return;
+
+    for (let i = 0; i < savedReviews.length; i++) {
+      if (idValue === savedReviews[i].id && passwordValue !== savedReviews[i].password) {
+        alert("이미 존재하는 ID입니다.");
+        return false;
+      }
+    }
 
     const newReview = {
       movieID: movieID, // 영화의 ID를 추가하여 저장
@@ -169,8 +176,6 @@ getMovieDetails().then(async (data) => {
             </div>
           `;
     // 리뷰생성하고나서 input 벨류값 초기화
-    document.querySelector(".id").value = "";
-    document.querySelector(".pw").value = "";
     document.querySelector(".text-box").value = "";
 
     // 삭제
