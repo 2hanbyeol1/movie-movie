@@ -201,6 +201,10 @@ getMovieDetails().then(async (data) => {
               </div>
             </div>
           `;
+    // 리뷰생성하고나서 input 벨류값 초기화
+    document.querySelector(".id").value = "";
+    document.querySelector(".pw").value = "";
+    document.querySelector(".text-box").value = "";
 
     //삭제
     newReviewBox.querySelector(".delete-button").addEventListener("click", () => {
@@ -208,7 +212,6 @@ getMovieDetails().then(async (data) => {
       if (inputPassword === review.password) {
         const index = savedReviews.indexOf(review);
         savedReviews.splice(index, 1);
-        newReviewBox.remove();
         localStorage.setItem("reviews", JSON.stringify(savedReviews));
       } else {
         alert("비밀번호가 일치하지 않습니다.");
