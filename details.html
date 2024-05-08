@@ -23,8 +23,15 @@
         </div>
         <div class="input">
           <div class="info">
-            <input type="text" class="id" id="id" placeholder="ID를 입력해주세요." />
-            <input type="password" class="pw" id="pw" placeholder="비밀번호를 입력해주세요." />
+            <input type="text" class="id" id="id" minlength="3" maxlength="7" placeholder="ID를 입력해주세요." />
+            <input
+              type="password"
+              class="pw"
+              id="pw"
+              minlength="4"
+              maxlength="4"
+              placeholder="PW(숫자 4자리)를 입력해주세요."
+            />
           </div>
           <div class="content">
             <textarea type="text" class="text-box" placeholder="관람평을 입력해주세요."></textarea
