@@ -141,6 +141,8 @@ getMovieDetails().then(async (data) => {
 
   const savedReviews = JSON.parse(localStorage.getItem("reviews")) || [];
   const reviewBox = document.querySelector(".reviews");
+  const notFound = document.querySelector("#not-found");
+  if (savedReviews.length !== 0) notFound.style.display = "none";
 
   savedReviews.forEach((review) => {
     // 리뷰를 추가할 때 해당 영화 ID와 저장된 리뷰의 영화 ID를 비교하여 일치할 경우에만 추가
@@ -178,7 +180,6 @@ getMovieDetails().then(async (data) => {
 
     // 해당 영화의 리뷰만 저장
     savedReviews.push(newReview);
-
     localStorage.setItem("reviews", JSON.stringify(savedReviews));
 
     // 해당 영화의 리뷰만 추가
@@ -186,6 +187,8 @@ getMovieDetails().then(async (data) => {
       const newReviewBox = createReviewBox(newReview);
       reviewBox.prepend(newReviewBox);
     }
+
+    if (savedReviews.length !== 0) notFound.style.display = "none";
   });
 
   function createReviewBox(review) {
@@ -206,24 +209,25 @@ getMovieDetails().then(async (data) => {
     document.querySelector(".pw").value = "";
     document.querySelector(".text-box").value = "";
 
-    //삭제
+    // 삭제
     newReviewBox.querySelector(".delete-button").addEventListener("click", () => {
       const inputPassword = prompt("비밀번호를 입력하세요:");
       if (inputPassword === review.password) {
         const index = savedReviews.indexOf(review);
         savedReviews.splice(index, 1);
+        newReviewBox.remove();
         localStorage.setItem("reviews", JSON.stringify(savedReviews));
+        if (savedReviews.length === 0) notFound.style.display = "block";
       } else {
         alert("비밀번호가 일치하지 않습니다.");
       }
     });
 
-    //수정
+    // 수정
     newReviewBox.querySelector(".edit-button").addEventListener("click", () => {
       const inputPassword = prompt("비밀번호를 입력하세요:");
       if (inputPassword === review.password) {
-        const reviewContent = newReviewBox.querySelector(".review-content");
-        const reviewText = reviewContent.querySelector("p:last-child");
+        const reviewText = newReviewBox.querySelector(".review-content");
         const newText = prompt("리뷰를 수정하세요:", reviewText.textContent);
         if (newText !== null) {
           reviewText.textContent = newText;
