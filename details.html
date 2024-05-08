@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>영화 상세페이지</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" media="screen" href="./style/global.css" />
+    <link rel="stylesheet" href="./style/details.css" />
+  </head>
+  <body>
+    <div class="movieDetailsSection">
+      <header id="back">
+        <a class="logo" href="./index.html" title="웹 사이트로 뒤로가기">
+          <img src="./assets/img/back.png" width="30" height="30" />
+        </a>
+      </header>
+      <aside class="review-container">
+        <div class="review-above">
+          <h1 id="title">리뷰</h1>
+          <div class="reviews">
+            <p id="not-found">리뷰가 없습니다</p>
+          </div>
+        </div>
+        <div class="input">
+          <div class="info">
+            <input type="text" class="id" id="id" minlength="3" maxlength="7" placeholder="ID" />
+            <input type="password" class="pw" id="pw" minlength="4" maxlength="4" placeholder="PW(숫자 4자리)" />
+          </div>
+          <div class="content">
+            <textarea type="text" class="text-box" placeholder="관람평"></textarea><button class="btn">입력</button>
+          </div>
+        </div>
+      </aside>
+      <main class="main">
+        <div class="movie-info"></div>
+        <div class="image-box">
+          <div id="imageContainer" class="image-container"><span>스틸컷</span></div>
+        </div>
+        <div id="imageModal" class="modal">
+          <img id="modalImg" class="modal-content" />
+        </div>
+      </main>
+    </div>
+    <script type="module" src="./src/details.js"></script>
+  </body>
+</html>
