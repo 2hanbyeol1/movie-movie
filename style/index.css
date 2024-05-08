@@ -291,7 +291,6 @@ main {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  
 }
 
 .card-overview {
@@ -340,7 +339,6 @@ main {
   animation: motion 0.7s linear 0s infinite;
 }
 
-
 @keyframes motion {
   0% {
     transform: translateY(0);
@@ -368,7 +366,7 @@ main {
   }
 
   main {
-    padding-top: 7.9rem;
+    padding-top: 8.9rem;
   }
 
   .header-search,
