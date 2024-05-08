@@ -112,6 +112,7 @@ getMovieDetails().then(async (data) => {
   const savedReviews = JSON.parse(localStorage.getItem("reviews")) || [];
   const reviewBox = document.querySelector(".reviews");
   const notFound = document.querySelector("#not-found");
+  const textBox = document.querySelector(".text-box");
 
   let count = savedReviews.reduce((cnt, review) => {
     // 리뷰를 추가할 때 해당 영화 ID와 저장된 리뷰의 영화 ID를 비교하여 일치할 경우에만 추가
@@ -160,6 +161,7 @@ getMovieDetails().then(async (data) => {
 
     count += 1;
     if (count !== 0) notFound.style.display = "none";
+    textBox.focus();
   });
 
   function createReviewBox(review) {
@@ -176,7 +178,7 @@ getMovieDetails().then(async (data) => {
             </div>
           `;
     // 리뷰생성하고나서 input 벨류값 초기화
-    document.querySelector(".text-box").value = "";
+    textBox.value = "";
 
     // 삭제
     newReviewBox.querySelector(".delete-button").addEventListener("click", () => {
