@@ -27,7 +27,8 @@ export async function getMovieDetails() {
 
     return responseJson;
   } catch (e) {
-    alert(e);
+    alert("해당 영화정보를 찾을수 없습니다. 메인페이지로 이동합니다.");
+    window.location.href = "./index.html";
   }
   return null;
 }
