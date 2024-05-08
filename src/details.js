@@ -53,35 +53,36 @@ const modalImg = document.getElementById("modalImg");
 
 // 이미지 컨테이너 선택하고 클릭이벤트 적용
 const container = document.getElementById("imageContainer");
-container.addEventListener("click", handleClick);
 
 // 클릭할때 실행될 함수
-function handleClick(event) {
+const handleClick = (event) => {
   // 이미지 클릭시 클릭된 이미지 주소 가져오기
   modalImg.src = event.target.src;
   // 모달로 띄우기
   modal.style.display = "block";
-}
+};
+
+container.addEventListener("click", handleClick);
 
 // 모달창 밖이나 사진이 클릭 되었을때 모달 닫기
-window.onclick = function (event) {
+window.onclick = (event) => {
   if (event.target == modal) {
     modal.style.display = "none";
   }
 };
-modalImg.onclick = function () {
+modalImg.onclick = () => {
   modal.style.display = "none";
 };
 
 // 자동 가로방향 스크롤링 구현 함수
-function autoScroll() {
+const autoScroll = () => {
   // 오른쪽으로 스크롤되는 속도
   container.scrollLeft += 1;
   // 스크롤이 다 되었을때 다시 처음부터 스크롤링 되게 리셋
   if (container.scrollLeft >= container.scrollWidth - container.clientWidth) {
     container.scrollLeft = 0;
   }
-}
+};
 
 // 오토스코롤이 기본값으로 적용
 let scrollInterval = setInterval(autoScroll, 40);
@@ -139,18 +140,22 @@ getMovieDetails().then(async (data) => {
       </div>
     `;
 
+  let count = 0;
   const savedReviews = JSON.parse(localStorage.getItem("reviews")) || [];
   const reviewBox = document.querySelector(".reviews");
   const notFound = document.querySelector("#not-found");
-  if (savedReviews.length !== 0) notFound.style.display = "none";
 
-  savedReviews.forEach((review) => {
+  count = savedReviews.reduce((cnt, review) => {
     // 리뷰를 추가할 때 해당 영화 ID와 저장된 리뷰의 영화 ID를 비교하여 일치할 경우에만 추가
     if (review.movieID === movieID) {
       const newReviewBox = createReviewBox(review);
       reviewBox.appendChild(newReviewBox);
+      return cnt + 1;
     }
-  });
+    return cnt;
+  }, 0);
+
+  if (count !== 0) notFound.style.display = "none";
 
   document.querySelector(".btn").addEventListener("click", () => {
     const idValue = document.querySelector(".id").value;
@@ -188,7 +193,7 @@ getMovieDetails().then(async (data) => {
       reviewBox.prepend(newReviewBox);
     }
 
-    if (savedReviews.length !== 0) notFound.style.display = "none";
+    if (count !== 0) notFound.style.display = "none";
   });
 
   function createReviewBox(review) {
@@ -217,7 +222,7 @@ getMovieDetails().then(async (data) => {
         savedReviews.splice(index, 1);
         newReviewBox.remove();
         localStorage.setItem("reviews", JSON.stringify(savedReviews));
-        if (savedReviews.length === 0) notFound.style.display = "block";
+        if (count === 0) notFound.style.display = "block";
       } else {
         alert("비밀번호가 일치하지 않습니다.");
       }
