@@ -88,7 +88,7 @@ getMovieDetails().then(async (data) => {
       <div class="main-img">
         <iframe 
           width="690" height="390" 
-          src="https://www.youtube.com/embed/${movieKey}?mute=1&autoplay=1"
+          src="https://www.youtube.com/embed/${movieKey}?mute=1&autoplay=1&loop=1&playlist=${movieKey}"
           title="YouTube video player" frameborder="0" 
           allow="accelerometer; autoplay; clipboard-write; 
             encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
