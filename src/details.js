@@ -1,5 +1,5 @@
 import { getMovieCredits, getMovieDetails, getMovieImages, getMovieTrailer } from "./api.js";
-import badword from "./constants/badword.js";
+import { validateId, validatePassword, validateReview } from "./feature/validation.js";
 
 // 영화 ID 가져오기
 const getMovieID = async () => {
@@ -53,44 +53,45 @@ const modalImg = document.getElementById("modalImg");
 
 // 이미지 컨테이너 선택하고 클릭이벤트 적용
 const container = document.getElementById("imageContainer");
-container.addEventListener("click", handleClick);
 
 // 클릭할때 실행될 함수
-function handleClick(event) {
+const handleClick = (event) => {
   // 이미지 클릭시 클릭된 이미지 주소 가져오기
   modalImg.src = event.target.src;
   // 모달로 띄우기
   modal.style.display = "block";
-}
+};
+
+container.addEventListener("click", handleClick);
 
 // 모달창 밖이나 사진이 클릭 되었을때 모달 닫기
-window.onclick = function (event) {
+window.onclick = (event) => {
   if (event.target == modal) {
     modal.style.display = "none";
   }
 };
-modalImg.onclick = function () {
+modalImg.onclick = () => {
   modal.style.display = "none";
 };
 
 // 자동 가로방향 스크롤링 구현 함수
-function autoScroll() {
+const autoScroll = () => {
   // 오른쪽으로 스크롤되는 속도
   container.scrollLeft += 1;
   // 스크롤이 다 되었을때 다시 처음부터 스크롤링 되게 리셋
   if (container.scrollLeft >= container.scrollWidth - container.clientWidth) {
     container.scrollLeft = 0;
   }
-}
+};
 
-// 오토스코롤이 기본값으로 적용
+// 오토스크롤이 기본값으로 적용
 let scrollInterval = setInterval(autoScroll, 40);
-// 마우스커서가 컨네이너 영역안으로 들어오면 오토스크롤링 멈추기
+// 마우스 커서가 컨네이너 영역안으로 들어오면 오토스크롤링 멈추기
 container.addEventListener("mouseenter", () => {
   clearInterval(scrollInterval);
 });
 
-// 마우스커서가 컨테이너 밖으로 떠나면 다시 스크롤 재개
+// 마우스 커서가 컨테이너 밖으로 떠나면 다시 스크롤 재개
 container.addEventListener("mouseleave", () => {
   // 인터벌을 클리어 해서 다수의 인터벌이 쌓여서 같이 돌아가게 하는것 (스크롤링 속도가 빨라지는것을 방지)
   clearInterval(scrollInterval);
@@ -142,34 +143,27 @@ getMovieDetails().then(async (data) => {
   const savedReviews = JSON.parse(localStorage.getItem("reviews")) || [];
   const reviewBox = document.querySelector(".reviews");
   const notFound = document.querySelector("#not-found");
-  if (savedReviews.length !== 0) notFound.style.display = "none";
 
-  savedReviews.forEach((review) => {
+  let count = savedReviews.reduce((cnt, review) => {
     // 리뷰를 추가할 때 해당 영화 ID와 저장된 리뷰의 영화 ID를 비교하여 일치할 경우에만 추가
     if (review.movieID === movieID) {
       const newReviewBox = createReviewBox(review);
       reviewBox.appendChild(newReviewBox);
+      return cnt + 1;
     }
-  });
+    return cnt;
+  }, 0);
+
+  if (count !== 0) notFound.style.display = "none";
 
   document.querySelector(".btn").addEventListener("click", () => {
     const idValue = document.querySelector(".id").value;
     const passwordValue = document.querySelector(".pw").value;
     const reviewValue = document.querySelector(".text-box").value;
 
-    for (let i = 0; i < savedReviews.length; i++) {
-      if (idValue === savedReviews[i].id) {
-        alert("중복된 ID입니다.");
-        return;
-      }
-    }
-
-    for (let i = 0; i < badword.length; i++) {
-      if (reviewValue.includes(badword[i])) {
-        alert("비속어가 포함 되어 있습니다.");
-        return;
-      }
-    }
+    if (!validateId(idValue, savedReviews)) return;
+    if (!validatePassword(passwordValue)) return;
+    if (!validateReview(reviewValue)) return;
 
     const newReview = {
       movieID: movieID, // 영화의 ID를 추가하여 저장
@@ -188,7 +182,8 @@ getMovieDetails().then(async (data) => {
       reviewBox.prepend(newReviewBox);
     }
 
-    if (savedReviews.length !== 0) notFound.style.display = "none";
+    count += 1;
+    if (count !== 0) notFound.style.display = "none";
   });
 
   function createReviewBox(review) {
@@ -212,12 +207,14 @@ getMovieDetails().then(async (data) => {
     // 삭제
     newReviewBox.querySelector(".delete-button").addEventListener("click", () => {
       const inputPassword = prompt("비밀번호를 입력하세요:");
+      if (!inputPassword) return;
       if (inputPassword === review.password) {
         const index = savedReviews.indexOf(review);
         savedReviews.splice(index, 1);
         newReviewBox.remove();
         localStorage.setItem("reviews", JSON.stringify(savedReviews));
-        if (savedReviews.length === 0) notFound.style.display = "block";
+        count -= 1;
+        if (count === 0) notFound.style.display = "block";
       } else {
         alert("비밀번호가 일치하지 않습니다.");
       }
@@ -225,11 +222,13 @@ getMovieDetails().then(async (data) => {
 
     // 수정
     newReviewBox.querySelector(".edit-button").addEventListener("click", () => {
-      const inputPassword = prompt("비밀번호를 입력하세요:");
+      const inputPassword = prompt("비밀번호(숫자 4자리)를 입력하세요:");
+      if (!inputPassword) return;
       if (inputPassword === review.password) {
         const reviewText = newReviewBox.querySelector(".review-content");
         const newText = prompt("리뷰를 수정하세요:", reviewText.textContent);
-        if (newText !== null) {
+        if (!newText) return;
+        if (newText !== null && validateReview(newText)) {
           reviewText.textContent = newText;
           review.review = newText;
           localStorage.setItem("reviews", JSON.stringify(savedReviews));
