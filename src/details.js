@@ -207,6 +207,7 @@ getMovieDetails().then(async (data) => {
     // 삭제
     newReviewBox.querySelector(".delete-button").addEventListener("click", () => {
       const inputPassword = prompt("비밀번호를 입력하세요:");
+      if (!inputPassword) return;
       if (inputPassword === review.password) {
         const index = savedReviews.indexOf(review);
         savedReviews.splice(index, 1);
@@ -222,9 +223,11 @@ getMovieDetails().then(async (data) => {
     // 수정
     newReviewBox.querySelector(".edit-button").addEventListener("click", () => {
       const inputPassword = prompt("비밀번호(숫자 4자리)를 입력하세요:");
+      if (!inputPassword) return;
       if (inputPassword === review.password) {
         const reviewText = newReviewBox.querySelector(".review-content");
         const newText = prompt("리뷰를 수정하세요:", reviewText.textContent);
+        if (!newText) return;
         if (newText !== null && validateReview(newText)) {
           reviewText.textContent = newText;
           review.review = newText;
