@@ -318,7 +318,7 @@ main {
   position: relative;
   display: inline-block;
   padding: 5px 10px;
-  margin: 40px 0;
+  margin-top: 1.5rem;
   color: #cf52e2;
   text-decoration: none;
   text-transform: uppercase;
@@ -329,7 +329,7 @@ main {
 .to-main-btn:hover {
   background: #fd77f8;
   color: black;
-  box-shadow: 0 0 5px #fd77f8, 0 0 25px #fd77f8, 0 0 50px #fd77f8, 0 0 200px #fd77f8;
+  box-shadow: 0 0 20px #fd77f8;
 }
 
 .to-main-btn:nth-child(2) {
