@@ -36,17 +36,11 @@ export const checkOnlyDigits = (str, name = "입력값") => {
 /**
  * 리뷰 작성자 이름 유효성 검사
  */
-export const validateId = (idValue, savedReviews) => {
-  const lengthVal = checkStringLength(idValue, 3, 7, "ID");
+export const validateId = (idValue) => {
+  const lengthVal = checkStringLength(idValue, 1, 7, "ID");
   if (!lengthVal.res) {
     alert(lengthVal.msg);
     return false;
-  }
-  for (let i = 0; i < savedReviews.length; i++) {
-    if (idValue === savedReviews[i].id) {
-      alert("중복된 ID입니다.");
-      return false;
-    }
   }
   for (let i = 0; i < badword.length; i++) {
     if (idValue.includes(badword[i])) {

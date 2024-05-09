@@ -69,7 +69,7 @@ $searchInput.focus();
 $searchInput.addEventListener("input", (e) => {
   const value = e.target.value;
 
-  const lengthRes = checkStringLength(value, 0, 130);
+  const lengthRes = checkStringLength(value, 0, 30, "검색어");
 
   if (!lengthRes.res) {
     $searchWarningMsg.innerText = lengthRes.msg;
